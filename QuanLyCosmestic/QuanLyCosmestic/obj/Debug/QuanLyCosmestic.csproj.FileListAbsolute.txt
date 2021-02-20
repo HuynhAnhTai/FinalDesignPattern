@@ -49,3 +49,6 @@ E:\DesignPattern\Final\QuanLyCosmestic\QuanLyCosmestic\obj\Debug\QuanLyCosmestic
 E:\DesignPattern\Final\QuanLyCosmestic\QuanLyCosmestic\obj\Debug\QuanLyCosmestic.ui.QuanLySanPhamControl.resources
 E:\DesignPattern\Final\QuanLyCosmestic\QuanLyCosmestic\obj\Debug\QuanLyCosmestic.ui.QuanLyNhanVien.resources
 E:\DesignPattern\Final\QuanLyCosmestic\QuanLyCosmestic\obj\Debug\QuanLyCosmestic.csproj.GenerateResource.Cache
+E:\DesignPattern\FinalProject\QuanLyCosmestic\QuanLyCosmestic\bin\Debug\QuanLyCosmestic.exe.config
+E:\DesignPattern\FinalProject\QuanLyCosmestic\QuanLyCosmestic\obj\Debug\QuanLyCosmestic.exe
+E:\DesignPattern\FinalProject\QuanLyCosmestic\QuanLyCosmestic\obj\Debug\QuanLyCosmestic.pdb

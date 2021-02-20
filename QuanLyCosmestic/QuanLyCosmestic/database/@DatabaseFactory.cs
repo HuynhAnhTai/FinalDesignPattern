@@ -8,5 +8,6 @@ namespace QuanLyCosmestic.database
     {
         SqlConnection createConnectionSql();
         SqlCommand createCommand(String sql);
+        SqlParameter createParam(String key, Object value);
     }
 }

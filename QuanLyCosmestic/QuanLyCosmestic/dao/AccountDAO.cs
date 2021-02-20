@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data.SqlClient;
+using QuanLyCosmestic.database;
 
 namespace QuanLyCosmestic.dao
 {
@@ -7,6 +8,7 @@ namespace QuanLyCosmestic.dao
     {
         private static AccountDAO instance;
         private helper.AccountHelper account_helper;
+        private DatabaseMySql dataMySql = new DatabaseMySql();
         private static readonly object padlock = new object();
 
         private AccountDAO()
@@ -33,8 +35,9 @@ namespace QuanLyCosmestic.dao
         {
             String sql = "Select count(*) from ACCOUNT where USERNAME LIKE @userName and PASSWORD LIKE @password";
 
-            SqlParameter param1 = new SqlParameter("@userName", userName);
-            SqlParameter param2 = new SqlParameter("@password", password);
+            //abstract factory
+            SqlParameter param1 = dataMySql.createParam("@userName", userName);
+            SqlParameter param2 = dataMySql.createParam("@password", password);
 
             SqlParameter[] parameters = { param1, param2 };
 

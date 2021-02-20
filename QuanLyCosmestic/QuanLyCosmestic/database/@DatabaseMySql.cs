@@ -28,5 +28,10 @@ namespace QuanLyCosmestic.database
         {
             return new SqlCommand(sql, con);
         }
+
+        public SqlParameter createParam(string key, object value)
+        {
+            return new SqlParameter(key, value);
+        }
     }
 }
