@@ -1,0 +1,51 @@
+E:\CNPM\FINAL\application\QuanLyCosmestic\QuanLyCosmestic\bin\Debug\QuanLyCosmestic.exe.config
+E:\CNPM\FINAL\application\QuanLyCosmestic\QuanLyCosmestic\obj\Debug\QuanLyCosmestic.Properties.Resources.resources
+E:\CNPM\FINAL\application\QuanLyCosmestic\QuanLyCosmestic\obj\Debug\QuanLyCosmestic.ui.FormLogin.resources
+E:\CNPM\FINAL\application\QuanLyCosmestic\QuanLyCosmestic\obj\Debug\QuanLyCosmestic.csproj.GenerateResource.Cache
+E:\CNPM\FINAL\application\QuanLyCosmestic\QuanLyCosmestic\bin\Debug\QuanLyCosmestic.exe
+E:\CNPM\FINAL\application\QuanLyCosmestic\QuanLyCosmestic\bin\Debug\QuanLyCosmestic.pdb
+E:\CNPM\FINAL\application\QuanLyCosmestic\QuanLyCosmestic\obj\Debug\QuanLyCosmestic.exe
+E:\CNPM\FINAL\application\QuanLyCosmestic\QuanLyCosmestic\obj\Debug\QuanLyCosmestic.pdb
+E:\CNPM\FINAL\application\QuanLyCosmestic\QuanLyCosmestic\obj\Debug\QuanLyCosmestic.ui.FormHome.resources
+E:\CNPM\FINAL\application\QuanLyCosmestic\QuanLyCosmestic\obj\Debug\QuanLyCosmestic.ui.BanHangControl.resources
+E:\CNPM\FINAL\application\QuanLyCosmestic\QuanLyCosmestic\obj\Debug\QuanLyCosmestic.ui.QuanLySanPhamControl.resources
+E:\CNPM\FINAL\application\QuanLyCosmestic\QuanLyCosmestic\obj\Debug\QuanLyCosmestic.ui.QuanLyNhanVien.resources
+E:\CNPM\FINAL\application\QuanLyCosmestic\QuanLyCosmestic\obj\Debug\QuanLyCosmestic.ui.control.LichSuXuatHoaDonControl.resources
+E:\CNPM\FINAL\application\QuanLyCosmestic\QuanLyCosmestic\obj\Debug\QuanLyCosmestic.ui.QuanLyKhachHangVaSuKienControl.resources
+E:\CNPM\FINAL\application\QuanLyCosmestic\QuanLyCosmestic\obj\Debug\QuanLyCosmestic.ui.control.QuanLyNhapSanPhamControl.resources
+E:\CNPM\FINAL\application\QuanLyCosmestic\QuanLyCosmestic\obj\Debug\QuanLyCosmestic.csprojResolveAssemblyReference.cache
+E:\CNPM\FINAL\application\51702061_51702171_TranPhuongNgocAnh_HuynhAnhTai_Nhom2\QuanLyCosmestic\QuanLyCosmestic\bin\Debug\QuanLyCosmestic.exe.config
+E:\CNPM\FINAL\application\51702061_51702171_TranPhuongNgocAnh_HuynhAnhTai_Nhom2\QuanLyCosmestic\QuanLyCosmestic\obj\Debug\QuanLyCosmestic.exe
+E:\CNPM\FINAL\application\51702061_51702171_TranPhuongNgocAnh_HuynhAnhTai_Nhom2\QuanLyCosmestic\QuanLyCosmestic\obj\Debug\QuanLyCosmestic.pdb
+E:\BTL ĐẠI HỌC\BTL-CNPM\application\51702061_51702171_TranPhuongNgocAnh_HuynhAnhTai_Nhom2\QuanLyCosmestic\QuanLyCosmestic\bin\Debug\QuanLyCosmestic.exe.config
+E:\BTL ĐẠI HỌC\BTL-CNPM\application\51702061_51702171_TranPhuongNgocAnh_HuynhAnhTai_Nhom2\QuanLyCosmestic\QuanLyCosmestic\obj\Debug\QuanLyCosmestic.exe
+E:\BTL ĐẠI HỌC\BTL-CNPM\application\51702061_51702171_TranPhuongNgocAnh_HuynhAnhTai_Nhom2\QuanLyCosmestic\QuanLyCosmestic\obj\Debug\QuanLyCosmestic.pdb
+E:\BTL ĐẠI HỌC\BTL-CNPM\application\51702061_51702171_TranPhuongNgocAnh_HuynhAnhTai_Nhom2\QuanLyCosmestic\QuanLyCosmestic\bin\Debug\QuanLyCosmestic.exe
+E:\BTL ĐẠI HỌC\BTL-CNPM\application\51702061_51702171_TranPhuongNgocAnh_HuynhAnhTai_Nhom2\QuanLyCosmestic\QuanLyCosmestic\bin\Debug\QuanLyCosmestic.pdb
+E:\BTL ĐẠI HỌC\BTL-CNPM\application\51702061_51702171_TranPhuongNgocAnh_HuynhAnhTai_Nhom2\QuanLyCosmestic\QuanLyCosmestic\obj\Debug\QuanLyCosmestic.csprojResolveAssemblyReference.cache
+E:\BTL ĐẠI HỌC\BTL-CNPM\application\51702061_51702171_TranPhuongNgocAnh_HuynhAnhTai_Nhom2\QuanLyCosmestic\QuanLyCosmestic\obj\Debug\QuanLyCosmestic.Properties.Resources.resources
+E:\BTL ĐẠI HỌC\BTL-CNPM\application\51702061_51702171_TranPhuongNgocAnh_HuynhAnhTai_Nhom2\QuanLyCosmestic\QuanLyCosmestic\obj\Debug\QuanLyCosmestic.ui.BanHangControl.resources
+E:\BTL ĐẠI HỌC\BTL-CNPM\application\51702061_51702171_TranPhuongNgocAnh_HuynhAnhTai_Nhom2\QuanLyCosmestic\QuanLyCosmestic\obj\Debug\QuanLyCosmestic.ui.control.LichSuXuatHoaDonControl.resources
+E:\BTL ĐẠI HỌC\BTL-CNPM\application\51702061_51702171_TranPhuongNgocAnh_HuynhAnhTai_Nhom2\QuanLyCosmestic\QuanLyCosmestic\obj\Debug\QuanLyCosmestic.ui.QuanLyKhachHangVaSuKienControl.resources
+E:\BTL ĐẠI HỌC\BTL-CNPM\application\51702061_51702171_TranPhuongNgocAnh_HuynhAnhTai_Nhom2\QuanLyCosmestic\QuanLyCosmestic\obj\Debug\QuanLyCosmestic.ui.control.QuanLyNhapSanPhamControl.resources
+E:\BTL ĐẠI HỌC\BTL-CNPM\application\51702061_51702171_TranPhuongNgocAnh_HuynhAnhTai_Nhom2\QuanLyCosmestic\QuanLyCosmestic\obj\Debug\QuanLyCosmestic.ui.FormHome.resources
+E:\BTL ĐẠI HỌC\BTL-CNPM\application\51702061_51702171_TranPhuongNgocAnh_HuynhAnhTai_Nhom2\QuanLyCosmestic\QuanLyCosmestic\obj\Debug\QuanLyCosmestic.ui.FormLogin.resources
+E:\BTL ĐẠI HỌC\BTL-CNPM\application\51702061_51702171_TranPhuongNgocAnh_HuynhAnhTai_Nhom2\QuanLyCosmestic\QuanLyCosmestic\obj\Debug\QuanLyCosmestic.ui.QuanLySanPhamControl.resources
+E:\BTL ĐẠI HỌC\BTL-CNPM\application\51702061_51702171_TranPhuongNgocAnh_HuynhAnhTai_Nhom2\QuanLyCosmestic\QuanLyCosmestic\obj\Debug\QuanLyCosmestic.ui.QuanLyNhanVien.resources
+E:\BTL ĐẠI HỌC\BTL-CNPM\application\51702061_51702171_TranPhuongNgocAnh_HuynhAnhTai_Nhom2\QuanLyCosmestic\QuanLyCosmestic\obj\Debug\QuanLyCosmestic.csproj.GenerateResource.Cache
+E:\DesignPattern\Final\QuanLyCosmestic\QuanLyCosmestic\bin\Debug\QuanLyCosmestic.exe.config
+E:\DesignPattern\Final\QuanLyCosmestic\QuanLyCosmestic\obj\Debug\QuanLyCosmestic.exe
+E:\DesignPattern\Final\QuanLyCosmestic\QuanLyCosmestic\obj\Debug\QuanLyCosmestic.pdb
+E:\DesignPattern\Final\QuanLyCosmestic\QuanLyCosmestic\bin\Debug\QuanLyCosmestic.exe
+E:\DesignPattern\Final\QuanLyCosmestic\QuanLyCosmestic\bin\Debug\QuanLyCosmestic.pdb
+E:\DesignPattern\Final\QuanLyCosmestic\QuanLyCosmestic\obj\Debug\QuanLyCosmestic.csprojResolveAssemblyReference.cache
+E:\DesignPattern\Final\QuanLyCosmestic\QuanLyCosmestic\obj\Debug\QuanLyCosmestic.Properties.Resources.resources
+E:\DesignPattern\Final\QuanLyCosmestic\QuanLyCosmestic\obj\Debug\QuanLyCosmestic.ui.BanHangControl.resources
+E:\DesignPattern\Final\QuanLyCosmestic\QuanLyCosmestic\obj\Debug\QuanLyCosmestic.ui.control.LichSuXuatHoaDonControl.resources
+E:\DesignPattern\Final\QuanLyCosmestic\QuanLyCosmestic\obj\Debug\QuanLyCosmestic.ui.QuanLyKhachHangVaSuKienControl.resources
+E:\DesignPattern\Final\QuanLyCosmestic\QuanLyCosmestic\obj\Debug\QuanLyCosmestic.ui.control.QuanLyNhapSanPhamControl.resources
+E:\DesignPattern\Final\QuanLyCosmestic\QuanLyCosmestic\obj\Debug\QuanLyCosmestic.ui.FormHome.resources
+E:\DesignPattern\Final\QuanLyCosmestic\QuanLyCosmestic\obj\Debug\QuanLyCosmestic.ui.FormLogin.resources
+E:\DesignPattern\Final\QuanLyCosmestic\QuanLyCosmestic\obj\Debug\QuanLyCosmestic.ui.QuanLySanPhamControl.resources
+E:\DesignPattern\Final\QuanLyCosmestic\QuanLyCosmestic\obj\Debug\QuanLyCosmestic.ui.QuanLyNhanVien.resources
+E:\DesignPattern\Final\QuanLyCosmestic\QuanLyCosmestic\obj\Debug\QuanLyCosmestic.csproj.GenerateResource.Cache
