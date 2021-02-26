@@ -1,20 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using QuanLyCosmestic.ui.strategyPatternMenu;
+using System;
 using System.Windows.Forms;
 
 namespace QuanLyCosmestic.ui
 {
     public partial class FormHome : Form
     {
+        private MenuItemClick menuItemClick;
         public FormHome()
         {
             InitializeComponent();
+            menuItemClick = new MenuItemClickImp();
         }
         
         /*
@@ -26,11 +22,8 @@ namespace QuanLyCosmestic.ui
             {
                 panel_switch_home.Height = bt_banHang_home.Height;
                 panel_switch_home.Top = bt_banHang_home.Top;
-
-                banHangControl1.BringToFront();
-                banHangControl1.Focus();
-                banHangControl1.loadData();
-                banHangControl1.clear();
+                //template method, strategy pattern 
+                menuItemClick.clickScreen(banHangControl1);
             }
             else
             {
@@ -47,12 +40,8 @@ namespace QuanLyCosmestic.ui
             {
                 panel_switch_home.Height = bt_quanLySanPham_home.Height;
                 panel_switch_home.Top = bt_quanLySanPham_home.Top;
-
-                quanLySanPhamControl1.BringToFront();
-                quanLySanPhamControl1.Focus();
-                quanLySanPhamControl1.loadData();
-
-                quanLySanPhamControl1.clear();
+                //template method, strategy pattern 
+                menuItemClick.clickScreen(quanLySanPhamControl1);
             }
             else
             {
@@ -67,10 +56,8 @@ namespace QuanLyCosmestic.ui
             {
                 panel_switch_home.Height = bt_quanLyNhanVien_home.Height;
                 panel_switch_home.Top = bt_quanLyNhanVien_home.Top;
-
-                quanLyNhanVien1.BringToFront();
-                quanLyNhanVien1.Focus();
-                quanLyNhanVien1.clear();
+                //template method, strategy pattern 
+                menuItemClick.clickScreen(quanLyNhanVien1);
             }
             else
             {
@@ -86,11 +73,8 @@ namespace QuanLyCosmestic.ui
             {
                 panel_switch_home.Height = bt_lichSuHoaDon_home.Height;
                 panel_switch_home.Top = bt_lichSuHoaDon_home.Top;
-
-                lichSuXuatHoaDonControl1.BringToFront();
-                lichSuXuatHoaDonControl1.Focus();
-                lichSuXuatHoaDonControl1.clear();
-                lichSuXuatHoaDonControl1.loadData();
+                //template method, strategy pattern 
+                menuItemClick.clickScreen(lichSuXuatHoaDonControl1);
             }
             else
             {
@@ -105,10 +89,8 @@ namespace QuanLyCosmestic.ui
             {
                 panel_switch_home.Height = bt_quanLyKhachHangVaSuKien_home.Height;
                 panel_switch_home.Top = bt_quanLyKhachHangVaSuKien_home.Top;
-
-                quanLyKhachHangVaSuKienControl1.BringToFront();
-                quanLyKhachHangVaSuKienControl1.Focus();
-                quanLyKhachHangVaSuKienControl1.clear();
+                //template method, strategy pattern 
+                menuItemClick.clickScreen(quanLyKhachHangVaSuKienControl1);
             }
             else
             {
@@ -124,11 +106,8 @@ namespace QuanLyCosmestic.ui
             {
                 panel_switch_home.Height = bt_quanLyNhapSanPham_home.Height;
                 panel_switch_home.Top = bt_quanLyNhapSanPham_home.Top;
-
-                quanLyNhapSanPhamControl1.BringToFront();
-                quanLyNhapSanPhamControl1.Focus();
-                quanLyNhapSanPhamControl1.loadData();
-                quanLyNhapSanPhamControl1.clear();
+                //template method, strategy pattern 
+                menuItemClick.clickScreen(quanLyNhapSanPhamControl1);
             }
             else
             {
@@ -159,10 +138,7 @@ namespace QuanLyCosmestic.ui
                     panel_switch_home.Height = bt_quanLySanPham_home.Height;
                     panel_switch_home.Top = bt_quanLySanPham_home.Top;
 
-                    quanLySanPhamControl1.BringToFront();
-                    quanLySanPhamControl1.Select();
-                    quanLySanPhamControl1.Focus();
-                    quanLySanPhamControl1.clear();
+                    menuItemClick.fristActive(quanLySanPhamControl1);
                     Program.newForm = 1;
                 }
                 else
@@ -170,10 +146,7 @@ namespace QuanLyCosmestic.ui
                     panel_switch_home.Height = bt_banHang_home.Height;
                     panel_switch_home.Top = bt_banHang_home.Top;
 
-                    banHangControl1.BringToFront();
-                    banHangControl1.Select();
-                    banHangControl1.Focus();
-                    banHangControl1.clear();
+                    menuItemClick.fristActive(banHangControl1);
                     Program.newForm = 1;
                 }
             }

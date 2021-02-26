@@ -9,10 +9,11 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Drawing.Printing;
 using System.Collections;
+using QuanLyCosmestic.ui.templatePattern;
 
 namespace QuanLyCosmestic.ui
 {
-    public partial class BanHangControl : UserControl
+    public partial class BanHangControl : ControlScreen
     {
         private dao.ProductDao product_dao;
         private dao.EventDao event_dao;
@@ -41,7 +42,7 @@ namespace QuanLyCosmestic.ui
         /*
          - Làm sạch các lựa chọn ở dataGridview_sanPham và chuyển focus vào tb_sdt
         */
-        public void clear()
+        public override void clear()
         {
             dgv_sanPham_banHangControl.ClearSelection();
             tb_sdtKhachHang_banHangControl.Focus(); 
@@ -51,7 +52,7 @@ namespace QuanLyCosmestic.ui
          - Dữ liệu của dgv_sanPham sẽ được lấy qua câu lệnh truy vấn ở class ProductDao
          - dis_event sẽ có dữ liệu qua câu lệnh truy vấn ở class EventDao sau đó sẽ lấy tên dữ liệu của cột "NAM_EVENT" xuất hiện trên cb_suKien
         */
-        public void loadData()
+        public override void loadData()
         {
             dgv_sanPham_banHangControl.DataSource = product_dao.loadDataSomething();
             dgv_sanPham_banHangControl.Columns[0].HeaderText = "Mã sản phẩm";
@@ -447,6 +448,5 @@ namespace QuanLyCosmestic.ui
         {
             product_dao.updateAmountProduct(id, amount, 0);
         }
-
     }
 }

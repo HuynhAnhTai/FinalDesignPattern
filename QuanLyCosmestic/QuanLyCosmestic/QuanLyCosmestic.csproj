@@ -127,6 +127,11 @@
     <Compile Include="ui\control\QuanLyKhachHangVaSuKienControl.Designer.cs">
       <DependentUpon>QuanLyKhachHangVaSuKienControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="ui\strategyPatternMenu\MenuItemClick.cs" />
+    <Compile Include="ui\strategyPatternMenu\MenuItemClickImp.cs" />
+    <Compile Include="ui\templatePattern\ControlScreen.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

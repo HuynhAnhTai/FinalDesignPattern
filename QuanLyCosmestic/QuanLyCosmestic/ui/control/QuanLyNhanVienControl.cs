@@ -1,17 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using QuanLyCosmestic.ui.templatePattern;
+using System;
 using System.Windows.Forms;
-using System.Data.SqlClient;
 
 namespace QuanLyCosmestic.ui
 {
-    public partial class QuanLyNhanVien : UserControl
+    public partial class QuanLyNhanVien : ControlScreen
     {
         private dao.AccountDAO account_dao;
         private dao.EmployeeDAO employee_dao;
@@ -30,7 +23,7 @@ namespace QuanLyCosmestic.ui
         /*
          - Xóa các lựa chọn ở dtg_nhanVien
          */
-        public void clear()
+        public override void clear()
         {
             dtg_nhanVien_quanLyNhanVienControl.ClearSelection();
         }
@@ -50,7 +43,7 @@ namespace QuanLyCosmestic.ui
         /*
         - Đổ dữ liệu nhân viên vào dtg_khachHang qua class EmployeeDao
         */
-        private void loadData()
+        public override void loadData()
         {
             dtg_nhanVien_quanLyNhanVienControl.DataSource = employee_dao.loadData();
             dtg_nhanVien_quanLyNhanVienControl.Columns[0].HeaderText = "Mã nhân viên";

@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using QuanLyCosmestic.database;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace QuanLyCosmestic.helper
 {

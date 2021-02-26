@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using QuanLyCosmestic.ui.templatePattern;
+using System;
 using System.Windows.Forms;
 
 namespace QuanLyCosmestic.ui.control
 {
-    public partial class QuanLyNhapSanPhamControl : UserControl
+    public partial class QuanLyNhapSanPhamControl : ControlScreen
     {
         private dao.ReceiveNoteDao receive_note_dao;
         private dao.ProductDao product_dao;
@@ -29,7 +23,7 @@ namespace QuanLyCosmestic.ui.control
         /*
          - Xóa lựa chọn ở dgv_sanPham
          */
-        public void clear()
+        public override void clear()
         {
             tb_maSanPham_quanLyNhapSanPham.Focus();
             dgv_sanPham_quanLyNhapSanPham.ClearSelection();
@@ -38,7 +32,7 @@ namespace QuanLyCosmestic.ui.control
         /*
          - Đổ dữ liệu sản phẩm nhập vào dgv_khachHang qua class ReceiveDao
          */
-        public void loadData()
+        public override void loadData()
         {
             dgv_sanPham_quanLyNhapSanPham.DataSource = receive_note_dao.loadData();
             dgv_sanPham_quanLyNhapSanPham.Columns[0].HeaderText = "Mã phiếu nhập";

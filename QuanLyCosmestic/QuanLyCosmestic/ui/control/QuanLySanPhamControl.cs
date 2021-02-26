@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using QuanLyCosmestic.ui.templatePattern;
+using System;
 using System.Windows.Forms;
 
 namespace QuanLyCosmestic.ui
 {
-    public partial class QuanLySanPhamControl : UserControl
+    public partial class QuanLySanPhamControl : ControlScreen
     {
         private dao.ProductDao product_dao;
         private dao.CategoryDao category_dao;
@@ -29,7 +23,7 @@ namespace QuanLyCosmestic.ui
         /*
          - Xóa các lựa chọn ở dtv_loaiSanPham và dtv_sanPham
          */
-        public void clear()
+        public override void clear()
         {
             tb_maSanPham_quanLySanPhamControl.Focus();
             dtv_loaiSanPham_quanLySanPhamControl.ClearSelection();
@@ -39,7 +33,7 @@ namespace QuanLyCosmestic.ui
         /*
          - Lấy dữ liệu ở CategoryDao và ProductDao đổ vào dtv_loaiSanPham, dtv_sanPham và cb_loai
          */
-        public void loadData()
+        public override void loadData()
         {
             dtv_loaiSanPham_quanLySanPhamControl.DataSource = category_dao.loadData();
             dtv_loaiSanPham_quanLySanPhamControl.Columns[0].HeaderText = "Mã loại sản phẩm";

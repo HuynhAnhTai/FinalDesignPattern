@@ -7,10 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using QuanLyCosmestic.ui.templatePattern;
 
 namespace QuanLyCosmestic.ui.control
 {
-    public partial class LichSuXuatHoaDonControl : UserControl
+    public partial class LichSuXuatHoaDonControl : ControlScreen
     {
         private dao.BillDao bill_dao;
         private dao.DetailBillDao detail_dao;
@@ -31,7 +32,7 @@ namespace QuanLyCosmestic.ui.control
         /*
          - Dùng xóa các lựa chọn ở dtv_hoaDon
          */
-        public void clear()
+        public override void clear()
         {
             dtv_hoaDon_lichSuXuatHoaDon.ClearSelection();
         }
@@ -39,7 +40,7 @@ namespace QuanLyCosmestic.ui.control
         /*
          - Load dữ liệu đưa vào dtv_hoaDon
          */
-        public void loadData()
+        public override void loadData()
         {
             dtv_hoaDon_lichSuXuatHoaDon.DataSource = bill_dao.loadData();
             dtv_hoaDon_lichSuXuatHoaDon.Columns[0].HeaderText = "Mã hóa đơn";

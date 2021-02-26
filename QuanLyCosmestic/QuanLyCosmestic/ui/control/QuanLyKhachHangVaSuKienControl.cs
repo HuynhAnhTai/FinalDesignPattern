@@ -7,10 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using QuanLyCosmestic.ui.templatePattern;
 
 namespace QuanLyCosmestic.ui
 {
-    public partial class QuanLyKhachHangVaSuKienControl : UserControl
+    public partial class QuanLyKhachHangVaSuKienControl : ControlScreen
     {
         private dao.CustomerDao customer_dao;
         private dao.EventDao event_dao;
@@ -29,7 +30,7 @@ namespace QuanLyCosmestic.ui
         /*
          - Xóa các lựa chọn ở dgv_khachHang và dgv_suKien
          */
-        public void clear()
+        public override void clear()
         {
             dgv_khachHang_quanLyKhachHangVaSuKien.ClearSelection();
             dgv_suKien_quanLyKhachHangVaSuKien.ClearSelection();
@@ -38,7 +39,7 @@ namespace QuanLyCosmestic.ui
         /*
          - Đổ dữ liệu khách hàng vào dgv_khachHang qua class CustomerDao và đổ dữ liệu vào dgv_suKien vào dgv_suKien qua class EventDao
          */
-        private void loadData()
+        public override void loadData()
         {
             dgv_khachHang_quanLyKhachHangVaSuKien.DataSource = customer_dao.loadData();
             dgv_khachHang_quanLyKhachHangVaSuKien.Columns[0].HeaderText = "Số điện thoại khách hàng";
