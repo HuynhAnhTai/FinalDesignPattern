@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data.Common;
 using System.Data.SqlClient;
 
 namespace QuanLyCosmestic.database
@@ -11,7 +12,7 @@ namespace QuanLyCosmestic.database
 
 
         //Signleton
-        public SqlConnection createConnectionSql()
+        public DbConnection createConnection()
         {
             if (con == null)
             {
@@ -24,14 +25,29 @@ namespace QuanLyCosmestic.database
             return con;
         }
 
-        public SqlCommand createCommand(string sql)
+        public DbCommand createCommand(string sql)
         {
             return new SqlCommand(sql, con);
         }
 
-        public SqlParameter createParam(string key, object value)
+        public DbParameter createParam(string key, object value)
         {
             return new SqlParameter(key, value);
+        }
+
+        public DbDataReader createDataReader(DbCommand cmd)
+        {
+            return cmd.ExecuteReader();
+        }
+
+        public DbCommand createCommand(string sql, DbConnection cn)
+        {
+            return new SqlCommand(sql, (SqlConnection)cn);
+        }
+
+        public DbDataAdapter createDataAdapter(DbCommand selectCmd)
+        {
+            return new SqlDataAdapter((SqlCommand)selectCmd);
         }
     }
 }

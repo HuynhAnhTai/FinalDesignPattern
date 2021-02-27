@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.Common;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -11,11 +12,11 @@ namespace QuanLyCosmestic.helper
 {
     class ReceiveNoteHelper
     {
-        private SqlConnection con;
-        private DatabaseMySql dataMySql = new DatabaseMySql();
+        private DbConnection con;
+        private DatabaseFactory df = new DatabaseMySql();
         public ReceiveNoteHelper()
         {
-            con = dataMySql.createConnectionSql();
+            con = df.createConnection();
         }
 
 
@@ -25,7 +26,7 @@ namespace QuanLyCosmestic.helper
             int rows;
             try
             {
-                SqlCommand cmd = new SqlCommand(sql, con);
+                DbCommand cmd = df.createCommand(sql, con);
                 cmd.Parameters.AddRange(parameters);
                 rows = cmd.ExecuteNonQuery();
             }
@@ -45,8 +46,8 @@ namespace QuanLyCosmestic.helper
             DataTable table = new DataTable();
             try
             {
-                SqlCommand cmd = new SqlCommand(sql, con);
-                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                DbCommand cmd = df.createCommand(sql, con);
+                DbDataAdapter adapter = df.createDataAdapter(cmd);
 
                 adapter.Fill(table);
             }

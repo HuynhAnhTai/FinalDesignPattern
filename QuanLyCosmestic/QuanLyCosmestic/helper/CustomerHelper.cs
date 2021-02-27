@@ -6,16 +6,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data;
+using System.Data.Common;
 
 namespace QuanLyCosmestic.helper
 {   
     class CustomerHelper
     {
-        private SqlConnection con;
-        private DatabaseMySql dataMySql = new DatabaseMySql();
+        private DbConnection con;
+        private DatabaseFactory df = new DatabaseMySql();
         public CustomerHelper()
         {
-            con = dataMySql.createConnectionSql();
+            con = df.createConnection();
         }
 
 
@@ -25,7 +26,7 @@ namespace QuanLyCosmestic.helper
             int rows;
             try
             {
-                SqlCommand cmd = new SqlCommand(sql, con);
+                DbCommand cmd = df.createCommand(sql, con);
                 cmd.Parameters.AddRange(parameters);
                 rows = cmd.ExecuteNonQuery();
             }
@@ -45,9 +46,9 @@ namespace QuanLyCosmestic.helper
             DataTable table = new DataTable();
             try
             {
-                SqlCommand cmd = new SqlCommand(sql, con);
-                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
-                
+                DbCommand cmd = df.createCommand(sql, con);
+                DbDataAdapter adapter = df.createDataAdapter(cmd);
+
                 adapter.Fill(table);
             }
             catch (Exception ex)
@@ -65,9 +66,9 @@ namespace QuanLyCosmestic.helper
             DataTable table = new DataTable();
             try
             {
-                SqlCommand cmd = new SqlCommand(sql, con);
+                DbCommand cmd = df.createCommand(sql, con);
                 cmd.Parameters.AddRange(parameters);
-                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                DbDataAdapter adapter = df.createDataAdapter(cmd);
 
                 adapter.Fill(table);
             }

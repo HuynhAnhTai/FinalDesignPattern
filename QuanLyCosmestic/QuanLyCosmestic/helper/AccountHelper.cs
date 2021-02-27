@@ -1,20 +1,21 @@
 ﻿using QuanLyCosmestic.database;
 using System;
+using System.Data.Common;
 using System.Data.SqlClient;
 namespace QuanLyCosmestic.helper
 {
    
     class AccountHelper
     {
-        private SqlConnection con;
+        private DbConnection con;
         private static AccountHelper instance;
-        private DatabaseMySql dataMySql = new DatabaseMySql();
+        private DatabaseFactory df = new DatabaseMySql();
         private static readonly object padlock = new object();
 
         private AccountHelper()
         {
             //abstract factory
-            con = dataMySql.createConnectionSql();
+            con = df.createConnection();
         }
 
         //Signleton AccountHelper
@@ -32,12 +33,12 @@ namespace QuanLyCosmestic.helper
         }
 
         //excute cmd check Account and return to AccountDAO
-        public Boolean checkAccountExistDB(String sql, SqlParameter[] parameters)
+        public Boolean checkAccountExistDB(String sql, DbParameter[] parameters)
         {
             con.Open();
 
             //abstract factory
-            SqlCommand cmd = dataMySql.createCommand(sql);
+            DbCommand cmd = df.createCommand(sql);
             cmd.Parameters.AddRange(parameters);
 
             int totalRows = 0;
@@ -53,15 +54,15 @@ namespace QuanLyCosmestic.helper
         }
 
         //get information of user access to windows form
-        public void selectCurrentUser(String sql, SqlParameter parameter)
+        public void selectCurrentUser(String sql, DbParameter parameter)
         {
             con.Open();
             //abstract factory
-            SqlCommand cmd2 = dataMySql.createCommand(sql);
+            DbCommand cmd2 = df.createCommand(sql);
             
             cmd2.Parameters.Add(parameter);
 
-            using (SqlDataReader oReader = cmd2.ExecuteReader())
+            using (DbDataReader oReader = df.createDataReader(cmd2))
             {
                 while (oReader.Read())
                 {
@@ -85,15 +86,15 @@ namespace QuanLyCosmestic.helper
         }
 
         //get Password database by userName
-        public String getPasswordDB(String sql, SqlParameter parameter)
+        public String getPasswordDB(String sql, DbParameter parameter)
         {
             con.Open();
             //abstract factory
-            SqlCommand cmd2 = dataMySql.createCommand(sql);
+            DbCommand cmd2 = df.createCommand(sql);
 
             cmd2.Parameters.Add(parameter);
-
-            using (SqlDataReader oReader = cmd2.ExecuteReader())
+            
+            using (DbDataReader oReader = df.createDataReader(cmd2))
             {
                 while (oReader.Read())
                 {
@@ -108,14 +109,14 @@ namespace QuanLyCosmestic.helper
         }
 
 
-        public int insertUpdateDelete(String sql, SqlParameter[] parameters)
+        public int insertUpdateDelete(String sql, DbParameter[] parameters)
         {
             con.Open();
             int rows;
             try
             {
                 //abstract factory
-                SqlCommand cmd = dataMySql.createCommand(sql);
+                DbCommand cmd = df.createCommand(sql);
                 cmd.Parameters.AddRange(parameters);
                 rows = cmd.ExecuteNonQuery();
             }

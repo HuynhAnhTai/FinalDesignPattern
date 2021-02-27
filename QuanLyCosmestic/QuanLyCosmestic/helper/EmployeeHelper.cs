@@ -2,16 +2,17 @@
 using System.Data;
 using System.Data.SqlClient;
 using QuanLyCosmestic.database;
+using System.Data.Common;
 
 namespace QuanLyCosmestic.helper
 {
     class EmployeeHelper
     {
-        private SqlConnection con;
-        private DatabaseMySql dataMySql = new DatabaseMySql();
+        private DbConnection con;
+        private DatabaseFactory df = new DatabaseMySql();
         public EmployeeHelper()
         {
-            con = dataMySql.createConnectionSql();
+            con = df.createConnection();
         }
 
         public int insertUpdateDelete(String sql, SqlParameter[] parameters)
@@ -20,7 +21,7 @@ namespace QuanLyCosmestic.helper
             int rows;
             try
             {
-                SqlCommand cmd = new SqlCommand(sql, con);
+                DbCommand cmd = df.createCommand(sql, con);
                 cmd.Parameters.AddRange(parameters);
                 rows = cmd.ExecuteNonQuery();
             }
@@ -40,8 +41,8 @@ namespace QuanLyCosmestic.helper
             DataTable table = new DataTable();
             try
             {
-                SqlCommand cmd = new SqlCommand(sql, con);
-                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                DbCommand cmd = df.createCommand(sql, con);
+                DbDataAdapter adapter = df.createDataAdapter(cmd);
 
                 adapter.Fill(table);
             }
