@@ -71,6 +71,7 @@
     <Compile Include="dao\ProductDao.cs" />
     <Compile Include="dao\ReceiveNoteDao.cs" />
     <Compile Include="frontController\Dispatcher.cs" />
+    <Compile Include="frontController\FormFactory.cs" />
     <Compile Include="frontController\FrontController.cs" />
     <Compile Include="helper\AccountHelper.cs" />
     <Compile Include="helper\BillHelper.cs" />
@@ -216,6 +217,9 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="modeScreen\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

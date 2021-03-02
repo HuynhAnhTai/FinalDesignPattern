@@ -1,4 +1,5 @@
-﻿using System;
+﻿using QuanLyCosmestic.frontController;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,27 +10,18 @@ namespace QuanLyCosmestic.dispatcher
 {
     class Dispatcher
     {
-        private ui.FormLogin formLogin;
-        private ui.FormHome formHome;
+        private FormFactory formFactory;
 
         public Dispatcher()
         {
-            
+            formFactory = new FormFactory();
         }
 
         public void dispatch(String request, Form formFrom)
         {
             formFrom.Hide();
-            if (request.Equals("LOGIN"))
-            {
-                formLogin = new ui.FormLogin();
-                formLogin.ShowDialog();    
-            }
-            else
-            {
-                formHome = new ui.FormHome();
-                formHome.ShowDialog();
-            }
+            //Factory pattern
+            formFactory.getForm(request).ShowDialog();
             formFrom.Close();
         }
     }

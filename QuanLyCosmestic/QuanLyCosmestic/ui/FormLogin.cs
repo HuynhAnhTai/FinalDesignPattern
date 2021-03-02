@@ -64,6 +64,7 @@ namespace QuanLyCosmestic.ui
                 if (check)
                 {
                     //front controller
+                    Program.newForm = 0;
                     frontControl.dispatchRequest("HOME", this);
                 }
                 else
