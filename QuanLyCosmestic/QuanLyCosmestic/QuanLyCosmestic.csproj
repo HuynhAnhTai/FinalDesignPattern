@@ -70,6 +70,8 @@
     <Compile Include="dao\EventDao.cs" />
     <Compile Include="dao\ProductDao.cs" />
     <Compile Include="dao\ReceiveNoteDao.cs" />
+    <Compile Include="frontController\Dispatcher.cs" />
+    <Compile Include="frontController\FrontController.cs" />
     <Compile Include="helper\AccountHelper.cs" />
     <Compile Include="helper\BillHelper.cs" />
     <Compile Include="helper\CategoryHelper.cs" />

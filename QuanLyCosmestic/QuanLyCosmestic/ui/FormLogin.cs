@@ -6,10 +6,12 @@ namespace QuanLyCosmestic.ui
     public partial class FormLogin : Form
     {
         private dao.AccountDAO accountDAO;
+        private frontController.FrontController frontControl;
 
         public FormLogin()
         {
             InitializeComponent();
+            frontControl = frontController.FrontController.getInstance();
             accountDAO = dao.AccountDAO.getInstance();
         }
 
@@ -61,11 +63,8 @@ namespace QuanLyCosmestic.ui
                 Boolean check = accountDAO.checkAccountExist(userName, password);
                 if (check)
                 {
-                    this.Hide();
-                    ui.FormHome formHome = new ui.FormHome();
-                    Program.newForm = 0;
-                    formHome.ShowDialog();
-                    this.Close();
+                    //front controller
+                    frontControl.dispatchRequest("HOME", this);
                 }
                 else
                 {

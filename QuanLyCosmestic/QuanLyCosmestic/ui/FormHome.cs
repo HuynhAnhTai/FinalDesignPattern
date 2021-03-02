@@ -7,9 +7,12 @@ namespace QuanLyCosmestic.ui
     public partial class FormHome : Form
     {
         private MenuItemClick menuItemClick;
+        private frontController.FrontController frontControl;
+
         public FormHome()
         {
             InitializeComponent();
+            frontControl = frontController.FrontController.getInstance();
             menuItemClick = new MenuItemClickImp();
         }
         
@@ -119,10 +122,8 @@ namespace QuanLyCosmestic.ui
 
         private void bt_dangXuat_home_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            ui.FormLogin formLogin = new ui.FormLogin();
-            formLogin.ShowDialog();
-            this.Close();
+            //front controller
+            frontControl.dispatchRequest("LOGIN", this);
         }
 
         /*
