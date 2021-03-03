@@ -29,11 +29,11 @@ namespace QuanLyCosmestic.ui
         public BanHangControl()
         {
             InitializeComponent();
-            product_dao = new dao.ProductDao();
-            event_dao = new dao.EventDao();
-            customer_dao = new dao.CustomerDao();
-            bill_dao = new dao.BillDao();
-            detail_bill = new dao.DetailBillDao();
+            product_dao = dao.ProductDao.getInstance();
+            event_dao = dao.EventDao.getInstance();
+            customer_dao = dao.CustomerDao.getInstance();
+            bill_dao = dao.BillDao.getInstance();
+            detail_bill = dao.DetailBillDao.getInstance();
             lb_nhanVienBanHang_banHangControl.Text = Program.currentEmployee.name_employee;
             loadData();
             dgv_sanPham_banHangControl.ClearSelection();

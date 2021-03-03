@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data.SqlClient;
 using QuanLyCosmestic.database;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Data;
 using System.Data.Common;
 
@@ -14,9 +10,26 @@ namespace QuanLyCosmestic.helper
     {
         private DbConnection con;
         private DatabaseFactory df = new DatabaseMySql();
-        public CustomerHelper()
+        private static CustomerHelper instance;
+        private static readonly object padlock = new object();
+
+        private CustomerHelper()
         {
             con = df.createConnection();
+        }
+
+        //Signleton
+        public static CustomerHelper getInstance()
+        {
+            if (instance == null)
+            {
+                //lock == synchronized
+                lock (padlock)
+                {
+                    instance = new CustomerHelper();
+                }
+            }
+            return instance;
         }
 
 

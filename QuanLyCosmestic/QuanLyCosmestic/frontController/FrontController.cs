@@ -19,7 +19,7 @@ namespace QuanLyCosmestic.frontController
             dispatcher = new Dispatcher();
         }
 
-        //Signleton AccountHelper
+        //Signleton
         public static FrontController getInstance()
         {
             if (instance == null)

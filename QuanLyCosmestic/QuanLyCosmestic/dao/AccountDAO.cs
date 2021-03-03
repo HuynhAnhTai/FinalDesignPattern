@@ -9,7 +9,7 @@ namespace QuanLyCosmestic.dao
     {
         private static AccountDAO instance;
         private helper.AccountHelper account_helper;
-        private DatabaseMySql dataMySql = new DatabaseMySql();
+        private DatabaseFactory df = new DatabaseMySql();
         private static readonly object padlock = new object();
 
         private AccountDAO()
@@ -37,8 +37,8 @@ namespace QuanLyCosmestic.dao
             String sql = "Select count(*) from ACCOUNT where USERNAME LIKE @userName and PASSWORD LIKE @password";
 
             //abstract factory
-            DbParameter param1 = dataMySql.createParam("@userName", userName);
-            DbParameter param2 = dataMySql.createParam("@password", password);
+            DbParameter param1 = df.createParam("@userName", userName);
+            DbParameter param2 = df.createParam("@password", password);
 
             DbParameter[] parameters = { param1, param2 };
 
@@ -54,7 +54,7 @@ namespace QuanLyCosmestic.dao
         public void setCurrentUser(String userName)
         {
             String sql2 = "Select * from EMPLOYEE where USERNAME LIKE @userName";
-            DbParameter param1 = dataMySql.createParam("@userName", userName);
+            DbParameter param1 = df.createParam("@userName", userName);
 
             account_helper.selectCurrentUser(sql2, param1);
         }
@@ -63,7 +63,7 @@ namespace QuanLyCosmestic.dao
         public String getPassword(String userName)
         {
             String sql2 = "Select * from ACCOUNT where USERNAME LIKE @userName";
-            DbParameter param1 = dataMySql.createParam("@userName", userName);
+            DbParameter param1 = df.createParam("@userName", userName);
 
             return account_helper.getPasswordDB(sql2, param1);
         }
@@ -73,8 +73,8 @@ namespace QuanLyCosmestic.dao
         {
             String sql = "insert into ACCOUNT values(@userName, @password)";
 
-            DbParameter param1 = dataMySql.createParam("@userName", account.user_name);
-            DbParameter param2 = dataMySql.createParam("@password", account.password);
+            DbParameter param1 = df.createParam("@userName", account.user_name);
+            DbParameter param2 = df.createParam("@password", account.password);
 
             DbParameter[] parameters = { param1, param2 };
 
@@ -88,7 +88,7 @@ namespace QuanLyCosmestic.dao
         {
             String sql = "delete from ACCOUNT where USERNAME like @userName";
 
-            DbParameter param1 = dataMySql.createParam("@userName", userName);
+            DbParameter param1 = df.createParam("@userName", userName);
             DbParameter[] parameters = { param1 };
 
             int rows = account_helper.insertUpdateDelete(sql, parameters);
@@ -101,9 +101,9 @@ namespace QuanLyCosmestic.dao
         {
             String sql = "update ACCOUNT set USERNAME = @userName, PASSWORD = @password where USERNAME like @userNameOld ";
 
-            DbParameter param1 = dataMySql.createParam("@userName", userName);
-            DbParameter param2 = dataMySql.createParam("@password", password);
-            DbParameter param3 = dataMySql.createParam("@userNameOld", userNameOld);
+            DbParameter param1 = df.createParam("@userName", userName);
+            DbParameter param2 = df.createParam("@password", password);
+            DbParameter param3 = df.createParam("@userNameOld", userNameOld);
             DbParameter[] parameters = { param1, param2, param3 };
 
             int rows = account_helper.insertUpdateDelete(sql, parameters);

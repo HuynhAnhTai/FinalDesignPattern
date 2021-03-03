@@ -11,10 +11,26 @@ namespace QuanLyCosmestic.dao
     class ReceiveNoteDao
     {
         private helper.ReceiveNoteHelper receive_note_helper;
+        private static ReceiveNoteDao instance;
+        private static readonly object padlock = new object();
 
-        public ReceiveNoteDao()
+        private ReceiveNoteDao()
         {
-            receive_note_helper = new helper.ReceiveNoteHelper();
+            receive_note_helper = helper.ReceiveNoteHelper.getInstance();
+        }
+
+        //Signleton
+        public static ReceiveNoteDao getInstance()
+        {
+            if (instance == null)
+            {
+                //lock == synchronized
+                lock (padlock)
+                {
+                    instance = new ReceiveNoteDao();
+                }
+            }
+            return instance;
         }
 
         public DataTable loadData()

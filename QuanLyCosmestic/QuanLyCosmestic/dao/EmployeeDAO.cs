@@ -11,10 +11,26 @@ namespace QuanLyCosmestic.dao
     class EmployeeDAO
     {
         private helper.EmployeeHelper employee_helper;
+        private static EmployeeDAO instance;
+        private static readonly object padlock = new object();
 
-        public EmployeeDAO()
+        private EmployeeDAO()
         {
-            employee_helper = new helper.EmployeeHelper();
+            employee_helper = helper.EmployeeHelper.getInstance();
+        }
+
+        //Signleton
+        public static EmployeeDAO getInstance()
+        {
+            if (instance == null)
+            {
+                //lock == synchronized
+                lock (padlock)
+                {
+                    instance = new EmployeeDAO();
+                }
+            }
+            return instance;
         }
 
         //add new employee to table employee

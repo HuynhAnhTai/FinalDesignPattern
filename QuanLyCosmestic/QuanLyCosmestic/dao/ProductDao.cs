@@ -11,10 +11,26 @@ namespace QuanLyCosmestic.dao
     class ProductDao
     {
         private helper.ProductHelper product_helper;
+        private static ProductDao instance;
+        private static readonly object padlock = new object();
 
-        public ProductDao()
+        private ProductDao()
         {
-            product_helper = new helper.ProductHelper();
+            product_helper = helper.ProductHelper.getInstance();
+        }
+
+        //Signleton
+        public static ProductDao getInstance()
+        {
+            if (instance == null)
+            {
+                //lock == synchronized
+                lock (padlock)
+                {
+                    instance = new ProductDao();
+                }
+            }
+            return instance;
         }
 
         public DataTable loadData()

@@ -14,9 +14,26 @@ namespace QuanLyCosmestic.helper
     {
         private DbConnection con;
         private DatabaseFactory df = new DatabaseMySql();
-        public EventHelper()
+        private static EventHelper instance;
+        private static readonly object padlock = new object();
+
+        private EventHelper()
         {
             con = df.createConnection();
+        }
+
+        //Signleton
+        public static EventHelper getInstance()
+        {
+            if (instance == null)
+            {
+                //lock == synchronized
+                lock (padlock)
+                {
+                    instance = new EventHelper();
+                }
+            }
+            return instance;
         }
 
         public int insertUpdateDelete(String sql, SqlParameter[] parameters)

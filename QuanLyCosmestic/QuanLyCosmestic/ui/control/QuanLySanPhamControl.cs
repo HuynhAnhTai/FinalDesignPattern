@@ -15,8 +15,8 @@ namespace QuanLyCosmestic.ui
         public QuanLySanPhamControl()
         {
             InitializeComponent();
-            product_dao = new dao.ProductDao();
-            category_dao = new dao.CategoryDao();
+            product_dao = dao.ProductDao.getInstance();
+            category_dao = dao.CategoryDao.getInstance();
             loadData();
         }
 

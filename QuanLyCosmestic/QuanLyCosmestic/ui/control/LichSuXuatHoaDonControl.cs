@@ -23,9 +23,9 @@ namespace QuanLyCosmestic.ui.control
         public LichSuXuatHoaDonControl()
         {
             InitializeComponent();
-            bill_dao = new dao.BillDao();
-            detail_dao = new dao.DetailBillDao();
-            event_dao = new dao.EventDao();
+            bill_dao = dao.BillDao.getInstance();
+            detail_dao = dao.DetailBillDao.getInstance();
+            event_dao = dao.EventDao.getInstance();
             loadData();
         }
 

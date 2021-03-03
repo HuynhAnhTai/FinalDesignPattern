@@ -14,9 +14,26 @@ namespace QuanLyCosmestic.helper
     {
         private DbConnection con;
         private DatabaseFactory df = new DatabaseMySql();
-        public ProductHelper()
+        private static ProductHelper instance;
+        private static readonly object padlock = new object();
+
+        private ProductHelper()
         {
             con = df.createConnection();
+        }
+
+        //Signleton
+        public static ProductHelper getInstance()
+        {
+            if (instance == null)
+            {
+                //lock == synchronized
+                lock (padlock)
+                {
+                    instance = new ProductHelper();
+                }
+            }
+            return instance;
         }
 
 

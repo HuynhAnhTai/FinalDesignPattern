@@ -11,10 +11,26 @@ namespace QuanLyCosmestic.dao
     class DetailBillDao
     {
         private helper.DetailBillHelper detail_helper;
+        private static DetailBillDao instance;
+        private static readonly object padlock = new object();
 
-        public DetailBillDao()
+        private DetailBillDao()
         {
-            detail_helper = new helper.DetailBillHelper();
+            detail_helper = helper.DetailBillHelper.getInstance();
+        }
+
+        //Signleton
+        public static DetailBillDao getInstance()
+        {
+            if (instance == null)
+            {
+                //lock == synchronized
+                lock (padlock)
+                {
+                    instance = new DetailBillDao();
+                }
+            }
+            return instance;
         }
 
         public DataTable loadData()

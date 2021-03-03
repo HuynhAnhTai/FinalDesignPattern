@@ -1,20 +1,32 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace QuanLyCosmestic.dao
 {
     class CategoryDao
     {
         private helper.CategoryHelper category_helper;
+        private static CategoryDao instance;
+        private static readonly object padlock = new object();
 
-        public CategoryDao()
+        private CategoryDao()
         {
-            category_helper = new helper.CategoryHelper();
+            category_helper = helper.CategoryHelper.getInstance();
+        }
+
+        //Signleton
+        public static CategoryDao getInstance()
+        {
+            if (instance == null)
+            {
+                //lock == synchronized
+                lock (padlock)
+                {
+                    instance = new CategoryDao();
+                }
+            }
+            return instance;
         }
 
         public DataTable loadData()

@@ -11,10 +11,26 @@ namespace QuanLyCosmestic.dao
     class EventDao
     {
         private helper.EventHelper event_helper;
+        private static EventDao instance;
+        private static readonly object padlock = new object();
 
-        public EventDao()
+        private EventDao()
         {
-            event_helper = new helper.EventHelper();
+            event_helper = helper.EventHelper.getInstance();
+        }
+
+        //Signleton
+        public static EventDao getInstance()
+        {
+            if (instance == null)
+            {
+                //lock == synchronized
+                lock (padlock)
+                {
+                    instance = new EventDao();
+                }
+            }
+            return instance;
         }
 
         public DataTable loadData()

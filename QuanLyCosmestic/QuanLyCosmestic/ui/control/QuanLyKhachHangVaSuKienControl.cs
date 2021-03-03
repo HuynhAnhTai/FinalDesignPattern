@@ -22,8 +22,8 @@ namespace QuanLyCosmestic.ui
         {
             InitializeComponent();
 
-            customer_dao = new dao.CustomerDao();
-            event_dao = new dao.EventDao();
+            customer_dao = dao.CustomerDao.getInstance();
+            event_dao = dao.EventDao.getInstance();
             loadData();
         }
 

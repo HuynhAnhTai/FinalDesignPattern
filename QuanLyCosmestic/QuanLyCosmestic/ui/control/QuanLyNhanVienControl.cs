@@ -15,7 +15,7 @@ namespace QuanLyCosmestic.ui
         public QuanLyNhanVien()
         {
             account_dao = dao.AccountDAO.getInstance();
-            employee_dao = new dao.EmployeeDAO();
+            employee_dao = dao.EmployeeDAO.getInstance();
 
             InitializeComponent();
         }

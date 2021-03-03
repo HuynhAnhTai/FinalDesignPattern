@@ -14,8 +14,8 @@ namespace QuanLyCosmestic.ui.control
         public QuanLyNhapSanPhamControl()
         {
             InitializeComponent();
-            receive_note_dao = new dao.ReceiveNoteDao();
-            product_dao = new dao.ProductDao();
+            receive_note_dao = dao.ReceiveNoteDao.getInstance();
+            product_dao = dao.ProductDao.getInstance();
             lb_maNhanVien_quanLySanPhamNhanVien.Text = Program.currentEmployee.id_employee.ToString();
             loadData();
         }

@@ -10,9 +10,26 @@ namespace QuanLyCosmestic.helper
     {
         private DbConnection con;
         private DatabaseFactory df = new DatabaseMySql();
-        public EmployeeHelper()
+        private static EmployeeHelper instance;
+        private static readonly object padlock = new object();
+
+        private EmployeeHelper()
         {
             con = df.createConnection();
+        }
+
+        //Signleton
+        public static EmployeeHelper getInstance()
+        {
+            if (instance == null)
+            {
+                //lock == synchronized
+                lock (padlock)
+                {
+                    instance = new EmployeeHelper();
+                }
+            }
+            return instance;
         }
 
         public int insertUpdateDelete(String sql, SqlParameter[] parameters)
