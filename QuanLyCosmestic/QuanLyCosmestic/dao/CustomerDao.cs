@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data;
 using System.Data.SqlClient;
+using QuanLyCosmestic.database;
+using System.Data.Common;
 
 namespace QuanLyCosmestic.dao
 {
@@ -13,6 +15,7 @@ namespace QuanLyCosmestic.dao
         private helper.CustomerHelper customer_helper;
         private static CustomerDao instance;
         private static readonly object padlock = new object();
+        private DatabaseFactory df = new DatabaseMySql();
 
         private CustomerDao()
         {
@@ -42,9 +45,9 @@ namespace QuanLyCosmestic.dao
         public DataTable findCustomerByTelephone(String telephone_number)
         {
             String sql = "select * from CUSTOMER where PHONE_NUMBER_CUSTOMER like @telephone";
-            SqlParameter param1 = new SqlParameter("@telephone", telephone_number);
+            DbParameter param1 = df.createParam("@telephone", telephone_number);
 
-            SqlParameter[] parameters = { param1 };
+            DbParameter[] parameters = { param1 };
             return customer_helper.findCustomer(sql, parameters);
         }
 
@@ -53,11 +56,11 @@ namespace QuanLyCosmestic.dao
         {
             String sql = "insert into CUSTOMER values(@phoneNumber, @name, @address)";
 
-            SqlParameter param1 = new SqlParameter("@phoneNumber", customer.phone_customer);
-            SqlParameter param2 = new SqlParameter("@name", customer.name_customer);
-            SqlParameter param3 = new SqlParameter("@address", customer.address_customer);
+            DbParameter param1 = df.createParam("@phoneNumber", customer.phone_customer);
+            DbParameter param2 = df.createParam("@name", customer.name_customer);
+            DbParameter param3 = df.createParam("@address", customer.address_customer);
 
-            SqlParameter[] parameters = { param1, param2, param3 };
+            DbParameter[] parameters = { param1, param2, param3 };
 
             int rows = customer_helper.insertUpdateDelete(sql, parameters);
 
@@ -69,8 +72,8 @@ namespace QuanLyCosmestic.dao
         {
             String sql = "delete from CUSTOMER where PHONE_NUMBER_CUSTOMER like @phoneNumber";
 
-            SqlParameter param1 = new SqlParameter("@phoneNumber", phone_number);
-            SqlParameter[] parameters = { param1 };
+            DbParameter param1 = df.createParam("@phoneNumber", phone_number);
+            DbParameter[] parameters = { param1 };
 
             int rows = customer_helper.insertUpdateDelete(sql, parameters);
 
@@ -83,11 +86,11 @@ namespace QuanLyCosmestic.dao
             String sql = "update CUSTOMER set PHONE_NUMBER_CUSTOMER = @phoneNew, CUSTOMERNAME = @name, "+
                           "CUSTOMER_ADDRESS = @address where PHONE_NUMBER_CUSTOMER like @phoneOld ";
 
-            SqlParameter param1 = new SqlParameter("@phoneNew", customer.phone_customer);
-            SqlParameter param2 = new SqlParameter("@name", customer.name_customer);
-            SqlParameter param3 = new SqlParameter("@address", customer.address_customer);
-            SqlParameter param4 = new SqlParameter("@phoneOld", phoneOld);
-            SqlParameter[] parameters = { param1, param2, param3, param4 };
+            DbParameter param1 = df.createParam("@phoneNew", customer.phone_customer);
+            DbParameter param2 = df.createParam("@name", customer.name_customer);
+            DbParameter param3 = df.createParam("@address", customer.address_customer);
+            DbParameter param4 = df.createParam("@phoneOld", phoneOld);
+            DbParameter[] parameters = { param1, param2, param3, param4 };
 
             int rows = customer_helper.insertUpdateDelete(sql, parameters);
 

@@ -1,6 +1,8 @@
-﻿using System;
+﻿using QuanLyCosmestic.database;
+using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.Common;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -13,6 +15,7 @@ namespace QuanLyCosmestic.dao
         private helper.ProductHelper product_helper;
         private static ProductDao instance;
         private static readonly object padlock = new object();
+        private DatabaseFactory df = new DatabaseMySql();
 
         private ProductDao()
         {
@@ -49,11 +52,11 @@ namespace QuanLyCosmestic.dao
         {
             String sql = "update PRODUCT set AMOUNT = AMOUNT - @amountOld + @amountNew where ID_PRODUCT like @id ";
 
-            SqlParameter param1 = new SqlParameter("@id", id);
-            SqlParameter param2 = new SqlParameter("@amountOld", amountOld);
-            SqlParameter param3 = new SqlParameter("@amountNew", amountNew);
+            DbParameter param1 = df.createParam("@id", id);
+            DbParameter param2 = df.createParam("@amountOld", amountOld);
+            DbParameter param3 = df.createParam("@amountNew", amountNew);
 
-            SqlParameter[] parameters = { param1, param2, param3};
+            DbParameter[] parameters = { param1, param2, param3};
 
             int rows = product_helper.insertUpdateDelete(sql, parameters);
 
@@ -65,14 +68,14 @@ namespace QuanLyCosmestic.dao
         {
             String sql = "insert into PRODUCT values(@idProduct, @nameProduct, @specification, @amount, @price, @idCategory)";
 
-            SqlParameter param1 = new SqlParameter("@idProduct", product.id_product);
-            SqlParameter param2 = new SqlParameter("@nameProduct", product.name_product);
-            SqlParameter param3 = new SqlParameter("@specification", product.specification);
-            SqlParameter param4 = new SqlParameter("@amount", product.amount);
-            SqlParameter param5 = new SqlParameter("@price", product.price);
-            SqlParameter param6 = new SqlParameter("@idCategory", product.id_category);
+            DbParameter param1 = df.createParam("@idProduct", product.id_product);
+            DbParameter param2 = df.createParam("@nameProduct", product.name_product);
+            DbParameter param3 = df.createParam("@specification", product.specification);
+            DbParameter param4 = df.createParam("@amount", product.amount);
+            DbParameter param5 = df.createParam("@price", product.price);
+            DbParameter param6 = df.createParam("@idCategory", product.id_category);
 
-            SqlParameter[] parameters = { param1, param2, param3, param4, param5, param6 };
+            DbParameter[] parameters = { param1, param2, param3, param4, param5, param6 };
 
             int rows = product_helper.insertUpdateDelete(sql, parameters);
 
@@ -85,14 +88,14 @@ namespace QuanLyCosmestic.dao
             String sql = "update PRODUCT set ID_PRODUCT = @idProduct, NAME_PRODUCT = @nameProduct, SPECIFICATION = @specification " +
                           ",AMOUNT = @amount, PRICE = @price, ID_CATEGORY = @idCategory where ID_PRODUCT like @idOld ";
 
-            SqlParameter param1 = new SqlParameter("@idProduct", product.id_product);
-            SqlParameter param2 = new SqlParameter("@nameProduct", product.name_product);
-            SqlParameter param3 = new SqlParameter("@specification", product.specification);
-            SqlParameter param4 = new SqlParameter("@amount", product.amount);
-            SqlParameter param5 = new SqlParameter("@price", product.price);
-            SqlParameter param6 = new SqlParameter("@idCategory", product.id_category);
-            SqlParameter param7 = new SqlParameter("@idOld", idOld);
-            SqlParameter[] parameters = { param1, param2, param3, param4, param5, param6, param7 };
+            DbParameter param1 = df.createParam("@idProduct", product.id_product);
+            DbParameter param2 = df.createParam("@nameProduct", product.name_product);
+            DbParameter param3 = df.createParam("@specification", product.specification);
+            DbParameter param4 = df.createParam("@amount", product.amount);
+            DbParameter param5 = df.createParam("@price", product.price);
+            DbParameter param6 = df.createParam("@idCategory", product.id_category);
+            DbParameter param7 = df.createParam("@idOld", idOld);
+            DbParameter[] parameters = { param1, param2, param3, param4, param5, param6, param7 };
 
             int rows = product_helper.insertUpdateDelete(sql, parameters);
 
@@ -104,8 +107,8 @@ namespace QuanLyCosmestic.dao
         {
             String sql = "delete from Product where ID_PRODUCT like @id";
 
-            SqlParameter param1 = new SqlParameter("@id", id);
-            SqlParameter[] parameters = { param1 };
+            DbParameter param1 = df.createParam("@id", id);
+            DbParameter[] parameters = { param1 };
 
             int rows = product_helper.insertUpdateDelete(sql, parameters);
 

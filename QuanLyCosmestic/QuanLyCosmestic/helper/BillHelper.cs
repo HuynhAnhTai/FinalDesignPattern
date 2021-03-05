@@ -34,7 +34,7 @@ namespace QuanLyCosmestic.helper
         }
 
 
-        public int insertUpdateDelete(String sql, SqlParameter[] parameters)
+        public int insertUpdateDelete(String sql, DbParameter[] parameters)
         {
             con.Open();
             int rows;
@@ -55,7 +55,7 @@ namespace QuanLyCosmestic.helper
         }
 
 
-        public DataTable loadDataFromDateToDate(String sql, SqlParameter[] parameters)
+        public DataTable loadDataFromDateToDate(String sql, DbParameter[] parameters)
         {
             con.Open();
             int row;

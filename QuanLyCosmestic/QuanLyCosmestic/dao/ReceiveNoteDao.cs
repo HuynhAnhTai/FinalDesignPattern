@@ -1,6 +1,8 @@
-﻿using System;
+﻿using QuanLyCosmestic.database;
+using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.Common;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -13,6 +15,7 @@ namespace QuanLyCosmestic.dao
         private helper.ReceiveNoteHelper receive_note_helper;
         private static ReceiveNoteDao instance;
         private static readonly object padlock = new object();
+        private DatabaseFactory df = new DatabaseMySql();
 
         private ReceiveNoteDao()
         {
@@ -44,16 +47,16 @@ namespace QuanLyCosmestic.dao
         {
             String sql = "insert into RECEIVEDNOTE values(@idEmployee, @idProduct, @amount, @price, @date, @nameProvider, @address, @phone)";
 
-            SqlParameter param1 = new SqlParameter("@idEmployee", receive_note.id_employee);
-            SqlParameter param2 = new SqlParameter("@idProduct", receive_note.id_product);
-            SqlParameter param3 = new SqlParameter("@amount", receive_note.amount);
-            SqlParameter param4 = new SqlParameter("@price", receive_note.total_price_receive);
-            SqlParameter param5 = new SqlParameter("@date", receive_note.date_receive);
-            SqlParameter param6 = new SqlParameter("@nameProvider", receive_note.name_provider);
-            SqlParameter param7 = new SqlParameter("@address", receive_note.address_provider);
-            SqlParameter param8 = new SqlParameter("@phone", receive_note.phone_number_provider);
+            DbParameter param1 = df.createParam("@idEmployee", receive_note.id_employee);
+            DbParameter param2 = df.createParam("@idProduct", receive_note.id_product);
+            DbParameter param3 = df.createParam("@amount", receive_note.amount);
+            DbParameter param4 = df.createParam("@price", receive_note.total_price_receive);
+            DbParameter param5 = df.createParam("@date", receive_note.date_receive);
+            DbParameter param6 = df.createParam("@nameProvider", receive_note.name_provider);
+            DbParameter param7 = df.createParam("@address", receive_note.address_provider);
+            DbParameter param8 = df.createParam("@phone", receive_note.phone_number_provider);
 
-            SqlParameter[] parameters = { param1, param2, param3, param4, param5, param6, param7, param8 };
+            DbParameter[] parameters = { param1, param2, param3, param4, param5, param6, param7, param8 };
 
             int rows = receive_note_helper.insertUpdateDelete(sql, parameters);
 
@@ -67,17 +70,17 @@ namespace QuanLyCosmestic.dao
                           ",TOTAL_PRICE_RECEIVE = @price, DATE_RECIVE = @date, NAME_PROVIDER = @nameProvider, PROVIDER_ADDRESS = @address,"+
                           "PHONE_NUMBER_PROVIDER = @phone where ID_RECEIVE like @id ";
 
-            SqlParameter param1 = new SqlParameter("@idEmployee", receive_note.id_employee);
-            SqlParameter param2 = new SqlParameter("@idProduct", receive_note.id_product);
-            SqlParameter param3 = new SqlParameter("@amount", receive_note.amount);
-            SqlParameter param4 = new SqlParameter("@price", receive_note.total_price_receive);
-            SqlParameter param5 = new SqlParameter("@date", receive_note.date_receive);
-            SqlParameter param6 = new SqlParameter("@nameProvider", receive_note.name_provider);
-            SqlParameter param7 = new SqlParameter("@address", receive_note.address_provider);
-            SqlParameter param8 = new SqlParameter("@phone", receive_note.phone_number_provider);
-            SqlParameter param9 = new SqlParameter("@id", id);
+            DbParameter param1 = df.createParam("@idEmployee", receive_note.id_employee);
+            DbParameter param2 = df.createParam("@idProduct", receive_note.id_product);
+            DbParameter param3 = df.createParam("@amount", receive_note.amount);
+            DbParameter param4 = df.createParam("@price", receive_note.total_price_receive);
+            DbParameter param5 = df.createParam("@date", receive_note.date_receive);
+            DbParameter param6 = df.createParam("@nameProvider", receive_note.name_provider);
+            DbParameter param7 = df.createParam("@address", receive_note.address_provider);
+            DbParameter param8 = df.createParam("@phone", receive_note.phone_number_provider);
+            DbParameter param9 = df.createParam("@id", id);
 
-            SqlParameter[] parameters = { param1, param2, param3, param4, param5, param6, param7, param8, param9 };
+            DbParameter[] parameters = { param1, param2, param3, param4, param5, param6, param7, param8, param9 };
 
             int rows = receive_note_helper.insertUpdateDelete(sql, parameters);
 
@@ -89,8 +92,8 @@ namespace QuanLyCosmestic.dao
         {
             String sql = "delete from RECEIVEDNOTE where ID_RECEIVE = @id";
 
-            SqlParameter param1 = new SqlParameter("@id", id);
-            SqlParameter[] parameters = { param1 };
+            DbParameter param1 = df.createParam("@id", id);
+            DbParameter[] parameters = { param1 };
 
             int rows = receive_note_helper.insertUpdateDelete(sql, parameters);
 

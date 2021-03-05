@@ -32,7 +32,7 @@ namespace QuanLyCosmestic.helper
             return instance;
         }
 
-        public int insertUpdateDelete(String sql, SqlParameter[] parameters)
+        public int insertUpdateDelete(String sql, DbParameter[] parameters)
         {
             con.Open();
             int rows;

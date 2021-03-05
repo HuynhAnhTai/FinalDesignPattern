@@ -1,6 +1,8 @@
-﻿using System;
+﻿using QuanLyCosmestic.database;
+using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.Common;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -13,6 +15,7 @@ namespace QuanLyCosmestic.dao
         private helper.DetailBillHelper detail_helper;
         private static DetailBillDao instance;
         private static readonly object padlock = new object();
+        private DatabaseFactory df = new DatabaseMySql();
 
         private DetailBillDao()
         {
@@ -42,9 +45,9 @@ namespace QuanLyCosmestic.dao
         public DataTable loadDataById(int id)
         {
             String sql = "select * from DETAILBILL where ID_BILL = @id";
-            SqlParameter param1 = new SqlParameter("@id", id);
+            DbParameter param1 = df.createParam("@id", id);
 
-            SqlParameter[] parameters = { param1 };
+            DbParameter[] parameters = { param1 };
             return detail_helper.loadDataById(sql, parameters);
         }
 
@@ -53,12 +56,12 @@ namespace QuanLyCosmestic.dao
         {
             String sql = "insert into DETAILBILL values(@id, @idProduct, @amount, @price)";
 
-            SqlParameter param1 = new SqlParameter("@id", detail_bill.id_bill);
-            SqlParameter param2 = new SqlParameter("@idProduct", detail_bill.id_product);
-            SqlParameter param3 = new SqlParameter("@amount", detail_bill.amount);
-            SqlParameter param4 = new SqlParameter("@price", detail_bill.price);
+            DbParameter param1 = df.createParam("@id", detail_bill.id_bill);
+            DbParameter param2 = df.createParam("@idProduct", detail_bill.id_product);
+            DbParameter param3 = df.createParam("@amount", detail_bill.amount);
+            DbParameter param4 = df.createParam("@price", detail_bill.price);
 
-            SqlParameter[] parameters = { param1, param2, param3, param4 };
+            DbParameter[] parameters = { param1, param2, param3, param4 };
 
             int rows = detail_helper.insertUpdateDelete(sql, parameters);
 

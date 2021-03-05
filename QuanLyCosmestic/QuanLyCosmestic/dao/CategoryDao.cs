@@ -1,5 +1,7 @@
-﻿using System;
+﻿using QuanLyCosmestic.database;
+using System;
 using System.Data;
+using System.Data.Common;
 using System.Data.SqlClient;
 
 namespace QuanLyCosmestic.dao
@@ -9,6 +11,7 @@ namespace QuanLyCosmestic.dao
         private helper.CategoryHelper category_helper;
         private static CategoryDao instance;
         private static readonly object padlock = new object();
+        private DatabaseFactory df = new DatabaseMySql();
 
         private CategoryDao()
         {
@@ -40,9 +43,9 @@ namespace QuanLyCosmestic.dao
         {
             String sql = "insert into CATEGORY values(@nameCategory)";
 
-            SqlParameter param1 = new SqlParameter("@nameCategory", category.name_category);
+            DbParameter param1 = df.createParam("@nameCategory", category.name_category);
 
-            SqlParameter[] parameters = { param1 };
+            DbParameter[] parameters = { param1 };
 
             int rows = category_helper.insertUpdateDelete(sql, parameters);
 
@@ -54,9 +57,9 @@ namespace QuanLyCosmestic.dao
         {
             String sql = "update CATEGORY set NAME_CATEGORY = @nameCategory where ID_CATEGORY like @id ";
 
-            SqlParameter param1 = new SqlParameter("@nameCategory", category.name_category);
-            SqlParameter param2 = new SqlParameter("@id", category.id_category);
-            SqlParameter[] parameters = { param1, param2 };
+            DbParameter param1 = df.createParam("@nameCategory", category.name_category);
+            DbParameter param2 = df.createParam("@id", category.id_category);
+            DbParameter[] parameters = { param1, param2 };
 
             int rows = category_helper.insertUpdateDelete(sql, parameters);
 
@@ -68,8 +71,8 @@ namespace QuanLyCosmestic.dao
         {
             String sql = "delete from CATEGORY where ID_CATEGORY like @id";
 
-            SqlParameter param1 = new SqlParameter("@id", id);
-            SqlParameter[] parameters = { param1 };
+            DbParameter param1 = df.createParam("@id", id);
+            DbParameter[] parameters = { param1 };
 
             int rows = category_helper.insertUpdateDelete(sql, parameters);
 

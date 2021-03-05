@@ -36,7 +36,7 @@ namespace QuanLyCosmestic.helper
             return instance;
         }
 
-        public int insertUpdateDelete(String sql, SqlParameter[] parameters)
+        public int insertUpdateDelete(String sql, DbParameter[] parameters)
         {
             con.Open();
             int rows;
@@ -76,7 +76,7 @@ namespace QuanLyCosmestic.helper
             return table;
         }
 
-        public DataTable loadDataFromId(String sql, SqlParameter[] parameters)
+        public DataTable loadDataFromId(String sql, DbParameter[] parameters)
         {
             con.Open();
             DataTable table = new DataTable();

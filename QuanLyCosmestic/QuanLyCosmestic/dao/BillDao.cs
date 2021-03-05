@@ -1,6 +1,8 @@
-﻿using System;
+﻿using QuanLyCosmestic.database;
+using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.Common;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -12,6 +14,7 @@ namespace QuanLyCosmestic.dao
     {
         private helper.BillHelper bill_helper;
         private static BillDao instance;
+        private DatabaseFactory df = new DatabaseMySql();
         private static readonly object padlock = new object();
 
         private BillDao()
@@ -42,10 +45,10 @@ namespace QuanLyCosmestic.dao
         public DataTable loadDataFromDateToDate(DateTime start, DateTime end)
         {
             String sql = "select * from BILL where INVOICE_DAY between @start and @end";
-            SqlParameter param1 = new SqlParameter("@start", start.Date);
-            SqlParameter param2 = new SqlParameter("@end", end.Date);
+            DbParameter param1 = df.createParam("@start", start.Date);
+            DbParameter param2 = df.createParam("@end", end.Date);
 
-            SqlParameter[] parameters = { param1, param2 };
+            DbParameter[] parameters = { param1, param2 };
             return bill_helper.loadDataFromDateToDate(sql, parameters);
         }
 
@@ -54,13 +57,13 @@ namespace QuanLyCosmestic.dao
         {
             String sql = "insert into BILL values(@totalPrice, @invoiceDay, @idEmployee, @phoneNumber, @idEvent)";
 
-            SqlParameter param1 = new SqlParameter("@totalPrice", bill.total_price);
-            SqlParameter param2 = new SqlParameter("@invoiceDay", bill.invoice_day);
-            SqlParameter param3 = new SqlParameter("@idEmployee", bill.id_employee);
-            SqlParameter param4 = new SqlParameter("@phoneNumber", bill.phone_number_customer);
-            SqlParameter param5 = new SqlParameter("@idEvent", bill.id_envent);
+            DbParameter param1 = df.createParam("@totalPrice", bill.total_price);
+            DbParameter param2 = df.createParam("@invoiceDay", bill.invoice_day);
+            DbParameter param3 = df.createParam("@idEmployee", bill.id_employee);
+            DbParameter param4 = df.createParam("@phoneNumber", bill.phone_number_customer);
+            DbParameter param5 = df.createParam("@idEvent", bill.id_envent);
 
-            SqlParameter[] parameters = { param1, param2, param3, param4, param5 };
+            DbParameter[] parameters = { param1, param2, param3, param4, param5 };
 
             int rows = bill_helper.insertUpdateDelete(sql, parameters);
 
