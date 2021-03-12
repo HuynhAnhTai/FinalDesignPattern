@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using QuanLyCosmestic.ui.templatePattern;
+using QuanLyCosmestic.ui.command;
 
 namespace QuanLyCosmestic.ui
 {
@@ -15,6 +16,8 @@ namespace QuanLyCosmestic.ui
     {
         private dao.CustomerDao customer_dao;
         private dao.EventDao event_dao;
+        private CommandButtonManagement commandButtonManagementKhachHang;
+        private CommandButtonManagement commandButtonManagementEvent;
 
         private String phone_customer;
         private int id_event;
@@ -24,6 +27,14 @@ namespace QuanLyCosmestic.ui
 
             customer_dao = dao.CustomerDao.getInstance();
             event_dao = dao.EventDao.getInstance();
+
+            commandButtonManagementKhachHang = new
+              CommandButtonImp(bt_themKhachHang_quanLyKhachHangVaSuKien, bt_refreshKhachHang_quanLyKhachHangVaSuKien,
+              bt_xoaKhachHang_quanLyKhachHangVaSuKien, bt_capNhatKhachHang_quanLyKhachHangVaSuKien, dgv_khachHang_quanLyKhachHangVaSuKien);
+
+            commandButtonManagementEvent = new
+              CommandButtonImp(bt_themSuKien_quanLyKhachHangVaSuKien, bt_refreshSuKien_quanLyKhachHangVaSuKien,
+              bt_xoaSuKien_quanLyKhachHangVaSuKien, bt_capNhatSuKien_quanLyKhachHangVaSuKien, dgv_suKien_quanLyKhachHangVaSuKien);
             loadData();
         }
 
@@ -51,6 +62,9 @@ namespace QuanLyCosmestic.ui
             dgv_suKien_quanLyKhachHangVaSuKien.Columns[1].HeaderText = "Tên sự kiện";
             dgv_suKien_quanLyKhachHangVaSuKien.Columns[2].HeaderText = "Giảm giá(%)";
             dgv_suKien_quanLyKhachHangVaSuKien.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
+            commandButtonManagementKhachHang.notAdjustItem();
+            commandButtonManagementEvent.notAdjustItem();
         }
 
         /*
@@ -75,7 +89,7 @@ namespace QuanLyCosmestic.ui
                     loadData();
                     dgv_suKien_quanLyKhachHangVaSuKien.ClearSelection();
                     bt_refreshKhachHang_quanLyKhachHangVaSuKien_Click(null, null);
-                    setEditingModeCustomer(false);
+                    commandButtonManagementKhachHang.notAdjustItem();
 
                     return;
                 }
@@ -119,7 +133,7 @@ namespace QuanLyCosmestic.ui
                     loadData();
                     dgv_suKien_quanLyKhachHangVaSuKien.ClearSelection();
                     bt_refreshKhachHang_quanLyKhachHangVaSuKien_Click(null, null);
-                    setEditingModeCustomer(false);
+                    commandButtonManagementKhachHang.notAdjustItem();
 
                     return;
                 }
@@ -159,7 +173,7 @@ namespace QuanLyCosmestic.ui
                 loadData();
                 dgv_suKien_quanLyKhachHangVaSuKien.ClearSelection();
                 bt_refreshKhachHang_quanLyKhachHangVaSuKien_Click(null, null);
-                setEditingModeCustomer(false);
+                commandButtonManagementKhachHang.notAdjustItem();
 
                 MessageBox.Show("Xóa Khách hàng thành công");
 
@@ -179,8 +193,7 @@ namespace QuanLyCosmestic.ui
             tb_hoVaTen_quanLyKhachHangVaSuKien.Text = "";
             tb_sdt_quanLyKhachHangVaSuKien.Text = "";
             tb_diaChi_quanLyKhachHangVaSuKien.Text = "";
-            
-            setEditingModeCustomer(false);
+            commandButtonManagementKhachHang.notAdjustItem();
         }
 
         /*
@@ -202,8 +215,7 @@ namespace QuanLyCosmestic.ui
             tb_sdt_quanLyKhachHangVaSuKien.Text = row.Cells[0].Value.ToString();
             tb_hoVaTen_quanLyKhachHangVaSuKien.Text = row.Cells[1].Value.ToString();
             tb_diaChi_quanLyKhachHangVaSuKien.Text = row.Cells[2].Value.ToString();
-
-            setEditingModeCustomer(true);
+            commandButtonManagementKhachHang.adjustItem();
         }
 
         /*
@@ -224,7 +236,7 @@ namespace QuanLyCosmestic.ui
 
             tb_tenSuKien_quanLyKhachHangVaControl.Text = row.Cells[1].Value.ToString();
             tb_giamGia_quanLyKhachHangVaSuKien.Text = row.Cells[2].Value.ToString();
-            setEditingModeEvent(true);
+            commandButtonManagementEvent.adjustItem();
         }
 
         /*
@@ -257,36 +269,6 @@ namespace QuanLyCosmestic.ui
                 return false;
             }
             return true;
-        }
-
-        /*
-         - Set các trạng thái cho dgv_khachHang và các bt khách hàng
-         */
-        private void setEditingModeCustomer(bool enable)
-        {
-            bt_themKhachHang_quanLyKhachHangVaSuKien.Enabled = !enable;
-            bt_refreshKhachHang_quanLyKhachHangVaSuKien.Enabled = enable;
-            bt_xoaKhachHang_quanLyKhachHangVaSuKien.Enabled = enable;
-            bt_capNhatKhachHang_quanLyKhachHangVaSuKien.Enabled = enable;
-            if (!enable)
-            {
-                dgv_khachHang_quanLyKhachHangVaSuKien.ClearSelection();
-            }
-        }
-
-        /*
-         - Set các trạng thái cho dgv_suKien và các bt sự kiện
-         */
-        private void setEditingModeEvent(bool enable)
-        {
-            bt_themSuKien_quanLyKhachHangVaSuKien.Enabled = !enable;
-            bt_refreshSuKien_quanLyKhachHangVaSuKien.Enabled = enable;
-            bt_xoaSuKien_quanLyKhachHangVaSuKien.Enabled = enable;
-            bt_capNhatSuKien_quanLyKhachHangVaSuKien.Enabled = enable;
-            if (!enable)
-            {
-                dgv_suKien_quanLyKhachHangVaSuKien.ClearSelection();
-            }
         }
 
         /*
@@ -323,8 +305,7 @@ namespace QuanLyCosmestic.ui
                         tb_hoVaTen_quanLyKhachHangVaSuKien.Text = row.Cells[1].Value.ToString();
                         tb_diaChi_quanLyKhachHangVaSuKien.Text = row.Cells[2].Value.ToString();
 
-
-                        setEditingModeCustomer(true);
+                        commandButtonManagementKhachHang.adjustItem();
                         return;
                     }
                 }
@@ -367,8 +348,7 @@ namespace QuanLyCosmestic.ui
                     loadData();
                     dgv_khachHang_quanLyKhachHangVaSuKien.ClearSelection();
                     bt_refreshSuKien_quanLyKhachHangVaSuKien_Click(null, null);
-
-                    setEditingModeEvent(false);
+                    commandButtonManagementEvent.notAdjustItem();
 
                     return;
                 }
@@ -410,7 +390,7 @@ namespace QuanLyCosmestic.ui
                     loadData();
                     dgv_khachHang_quanLyKhachHangVaSuKien.ClearSelection();
                     bt_refreshSuKien_quanLyKhachHangVaSuKien_Click(null, null);
-                    setEditingModeEvent(false);
+                    commandButtonManagementEvent.notAdjustItem();
 
                     return;
                 }
@@ -450,7 +430,7 @@ namespace QuanLyCosmestic.ui
                 loadData();
                 dgv_khachHang_quanLyKhachHangVaSuKien.ClearSelection();
                 bt_refreshSuKien_quanLyKhachHangVaSuKien_Click(null, null);
-                setEditingModeEvent(false);
+                commandButtonManagementEvent.notAdjustItem();
 
                 MessageBox.Show("Xóa sự kiện thành công");
                 return;
@@ -468,8 +448,7 @@ namespace QuanLyCosmestic.ui
         {
             tb_tenSuKien_quanLyKhachHangVaControl.Text = "";
             tb_giamGia_quanLyKhachHangVaSuKien.Text = "";
-
-            setEditingModeEvent(false);
+            commandButtonManagementEvent.notAdjustItem();
         }
 
         /*
@@ -493,8 +472,7 @@ namespace QuanLyCosmestic.ui
                         tb_tenSuKien_quanLyKhachHangVaControl.Text = row.Cells[1].Value.ToString();
                         tb_giamGia_quanLyKhachHangVaSuKien.Text = row.Cells[2].Value.ToString();
 
-
-                        setEditingModeEvent(true);
+                        commandButtonManagementEvent.adjustItem();
                         return;
                     }
                 }

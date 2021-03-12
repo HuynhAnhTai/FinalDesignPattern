@@ -1,4 +1,5 @@
-﻿using QuanLyCosmestic.ui.templatePattern;
+﻿using QuanLyCosmestic.ui.command;
+using QuanLyCosmestic.ui.templatePattern;
 using System;
 using System.Windows.Forms;
 
@@ -8,6 +9,7 @@ namespace QuanLyCosmestic.ui.control
     {
         private dao.ReceiveNoteDao receive_note_dao;
         private dao.ProductDao product_dao;
+        private CommandButtonManagement commandButtonManagement;
 
         private int id, amount;
 
@@ -16,6 +18,11 @@ namespace QuanLyCosmestic.ui.control
             InitializeComponent();
             receive_note_dao = dao.ReceiveNoteDao.getInstance();
             product_dao = dao.ProductDao.getInstance();
+
+            commandButtonManagement = new
+              CommandButtonImp(bt_nhap_quanLyNhapSanPhamControl, bt_refresh_quanLyNhapSanPham,
+              bt_xoa_quanLyNhapSanPham, bt_capNhat_quanLyNhapSanPham, dgv_sanPham_quanLyNhapSanPham);
+
             lb_maNhanVien_quanLySanPhamNhanVien.Text = Program.currentEmployee.id_employee.ToString();
             loadData();
         }
@@ -44,6 +51,7 @@ namespace QuanLyCosmestic.ui.control
             dgv_sanPham_quanLyNhapSanPham.Columns[6].HeaderText = "Nhà cung cấp";
             dgv_sanPham_quanLyNhapSanPham.Columns[7].HeaderText = "Địa chỉ";
             dgv_sanPham_quanLyNhapSanPham.Columns[8].HeaderText = "Số điện thoại nhà cung cấp";
+            commandButtonManagement.notAdjustItem();
         }
 
         /*
@@ -58,23 +66,7 @@ namespace QuanLyCosmestic.ui.control
             tb_nhaCungCap_quanLyNhapSanPham.Text = "";
             tb_sdtNhaCungCap_quanLyNhapSanPham.Text = "";
             tb_diaChi_quanLyNhapSanPham.Text = "";
-
-            setEditingMode(false);
-        }
-
-        /*
-         - Set trạng thái cho các button và data grid view
-         */
-        private void setEditingMode(bool enable)
-        {
-            bt_nhap_quanLyNhapSanPhamControl.Enabled = !enable;
-            bt_refresh_quanLyNhapSanPham.Enabled = enable;
-            bt_xoa_quanLyNhapSanPham.Enabled = enable;
-            bt_capNhat_quanLyNhapSanPham.Enabled = enable;
-            if (!enable)
-            {
-                dgv_sanPham_quanLyNhapSanPham.ClearSelection();
-            }
+            commandButtonManagement.notAdjustItem();
         }
 
         /*
@@ -163,8 +155,7 @@ namespace QuanLyCosmestic.ui.control
             tb_nhaCungCap_quanLyNhapSanPham.Text = row.Cells[6].Value.ToString();
             tb_diaChi_quanLyNhapSanPham.Text = row.Cells[7].Value.ToString();
             tb_sdtNhaCungCap_quanLyNhapSanPham.Text = row.Cells[8].Value.ToString();
-
-            setEditingMode(true);
+            commandButtonManagement.adjustItem();
         }
 
         /*
@@ -194,7 +185,7 @@ namespace QuanLyCosmestic.ui.control
                         dgv_sanPham_quanLyNhapSanPham.ClearSelection();
                         loadData();
                         bt_refresh_quanLyNhapSanPham_Click(null, null);
-                        setEditingMode(false);
+                        commandButtonManagement.notAdjustItem();
 
                         return;
                     }
@@ -249,7 +240,7 @@ namespace QuanLyCosmestic.ui.control
                         dgv_sanPham_quanLyNhapSanPham.ClearSelection();
                         loadData();
                         bt_refresh_quanLyNhapSanPham_Click(null, null);
-                        setEditingMode(false);
+                        commandButtonManagement.notAdjustItem();
 
                         return;
                     }
@@ -301,7 +292,7 @@ namespace QuanLyCosmestic.ui.control
                     dgv_sanPham_quanLyNhapSanPham.ClearSelection();
                     loadData();
                     bt_refresh_quanLyNhapSanPham_Click(null, null);
-                    setEditingMode(false);
+                    commandButtonManagement.notAdjustItem();
 
                     return;
                 }

@@ -1,4 +1,5 @@
-﻿using QuanLyCosmestic.ui.templatePattern;
+﻿using QuanLyCosmestic.ui.command;
+using QuanLyCosmestic.ui.templatePattern;
 using System;
 using System.Windows.Forms;
 
@@ -8,7 +9,7 @@ namespace QuanLyCosmestic.ui
     {
         private dao.AccountDAO account_dao;
         private dao.EmployeeDAO employee_dao;
-
+        private CommandButtonManagement commandButtonManagement;
         private int id;
         private String user_name;
 
@@ -16,8 +17,12 @@ namespace QuanLyCosmestic.ui
         {
             account_dao = dao.AccountDAO.getInstance();
             employee_dao = dao.EmployeeDAO.getInstance();
+           
 
             InitializeComponent();
+            commandButtonManagement = new
+               CommandButtonImp(bt_themNhanVien_quanLyNhanVienControl, bt_refresh_quanLyNhanVienControl,
+               bt_xoaNhanVien_quanLyNhanVienControl, bt_capNhatNhanVien_quanLyNhanVienControl, dtg_nhanVien_quanLyNhanVienControl);
         }
 
         /*
@@ -36,8 +41,7 @@ namespace QuanLyCosmestic.ui
 
             dtg_nhanVien_quanLyNhanVienControl.ClearSelection();
             loadData();
-            setEditingMode(false);
-
+            commandButtonManagement.notAdjustItem();
         }
 
         /*
@@ -61,22 +65,6 @@ namespace QuanLyCosmestic.ui
             dtg_nhanVien_quanLyNhanVienControl.Columns[12].HeaderText = "Lương";
             dtg_nhanVien_quanLyNhanVienControl.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
 
-        }
-        
-        /*
-        - Set các trạng thái cho các button và dtg_nhanVien
-        */
-        private void setEditingMode(bool enable)
-        {
-            bt_themNhanVien_quanLyNhanVienControl.Enabled = !enable;
-            bt_refresh_quanLyNhanVienControl.Enabled = enable;
-            bt_xoaNhanVien_quanLyNhanVienControl.Enabled = enable;
-            bt_capNhatNhanVien_quanLyNhanVienControl.Enabled = enable;
-            if (!enable)
-            {
-                dtg_nhanVien_quanLyNhanVienControl.ClearSelection();
-            }
-            
         }
 
         /*
@@ -122,7 +110,7 @@ namespace QuanLyCosmestic.ui
             tb_luong_quanLyNhanVienControl.Text = Convert.ToString(row.Cells[12].Value);
             tb_password_quanLyNhanVienControl.Text = account_dao.getPassword(Convert.ToString(row.Cells[1].Value));
 
-            setEditingMode(true);
+            commandButtonManagement.adjustItem();
         }
 
         /*
@@ -147,7 +135,7 @@ namespace QuanLyCosmestic.ui
                         dtg_nhanVien_quanLyNhanVienControl.ClearSelection();
                         loadData();
                         bt_refresh_quanLyNhanVienControl_Click(null, null);
-                        setEditingMode(false);
+                        commandButtonManagement.notAdjustItem();
 
                         return;
                     }
@@ -245,7 +233,7 @@ namespace QuanLyCosmestic.ui
                 dtg_nhanVien_quanLyNhanVienControl.ClearSelection();
                 loadData();
                 bt_refresh_quanLyNhanVienControl_Click(null, null);
-                setEditingMode(false);
+                commandButtonManagement.notAdjustItem();
 
                 MessageBox.Show("Xóa nhân viên thành công");
 
@@ -310,7 +298,7 @@ namespace QuanLyCosmestic.ui
                         dtg_nhanVien_quanLyNhanVienControl.ClearSelection();
                         loadData();
                         bt_refresh_quanLyNhanVienControl_Click(null, null);
-                        setEditingMode(false);
+                        commandButtonManagement.notAdjustItem();
 
                         return;
                     }
@@ -395,7 +383,7 @@ namespace QuanLyCosmestic.ui
 
             tb_hoTen_quanLyNhanVienControl.Focus();
 
-            setEditingMode(false);
+            commandButtonManagement.notAdjustItem();
         }
 
         /*
@@ -444,8 +432,7 @@ namespace QuanLyCosmestic.ui
                         tb_luong_quanLyNhanVienControl.Text = Convert.ToString(row.Cells[12].Value);
                         tb_password_quanLyNhanVienControl.Text = account_dao.getPassword(Convert.ToString(row.Cells[1].Value));
 
-
-                        setEditingMode(true);
+                        commandButtonManagement.adjustItem();
                         return;
                     }
                 }

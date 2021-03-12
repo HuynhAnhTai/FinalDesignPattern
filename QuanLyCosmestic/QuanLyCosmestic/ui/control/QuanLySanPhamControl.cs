@@ -1,4 +1,5 @@
-﻿using QuanLyCosmestic.ui.templatePattern;
+﻿using QuanLyCosmestic.ui.command;
+using QuanLyCosmestic.ui.templatePattern;
 using System;
 using System.Windows.Forms;
 
@@ -8,7 +9,8 @@ namespace QuanLyCosmestic.ui
     {
         private dao.ProductDao product_dao;
         private dao.CategoryDao category_dao;
-
+        private CommandButtonManagement commandButtonManagementCategory;
+        private CommandButtonManagement commandButtonManagementProduct;
         private string id_product;
         private int id_category;
 
@@ -17,6 +19,15 @@ namespace QuanLyCosmestic.ui
             InitializeComponent();
             product_dao = dao.ProductDao.getInstance();
             category_dao = dao.CategoryDao.getInstance();
+
+            commandButtonManagementCategory = new
+               CommandButtonImp(bt_themLoaiSanPham_quanLySanPhamControl, bt_refreshLoai_quanLySanPhamControl,
+               bt_xoaLoaiSanPham_quanLySanPhamControl, bt_capNhatLoai_quanLySanPhamControl, dtv_loaiSanPham_quanLySanPhamControl);
+
+            commandButtonManagementProduct = new
+               CommandButtonImp(bt_themSanPham_quanLySanPhamControl, bt_refresh_quanLySanPhamControl,
+               bt_xoaSanPham_quanLySanPhamControl, bt_capNhatSanPham_quanLySanPhamControl, dtv_sanPham_quanLySanPhamControl);
+
             loadData();
         }
 
@@ -51,6 +62,8 @@ namespace QuanLyCosmestic.ui
             cb_loai_quanLySanPhamControl.DataSource = category_dao.loadData();
             cb_loai_quanLySanPhamControl.DisplayMember = "NAME_CATEGORY";
             cb_loai_quanLySanPhamControl.ValueMember = "ID_CATEGORY";
+            commandButtonManagementCategory.notAdjustItem();
+            commandButtonManagementProduct.notAdjustItem();
         }
 
         /*
@@ -63,8 +76,7 @@ namespace QuanLyCosmestic.ui
             tb_size_quanLySanPhamControl.Text = "";
             tb_giaSanPham_quanLySanPhamControl.Text = "";
             cb_loai_quanLySanPhamControl.SelectedIndex = 0;
-
-            setEditingModeProduct(false);
+            commandButtonManagementProduct.notAdjustItem();
         }
 
         /*
@@ -73,37 +85,7 @@ namespace QuanLyCosmestic.ui
         private void bt_refreshLoai_quanLySanPhamControl_Click(object sender, EventArgs e)
         {
             tb_tenLoai_quanLySanPhamControl.Text = "";
-            setEditingModeCategory(false);
-        }
-
-        /*
-         - Set trạng thái cho các button, dtv sản phẩm
-         */
-        private void setEditingModeProduct(bool enable)
-        {
-            bt_themSanPham_quanLySanPhamControl.Enabled = !enable;
-            bt_refresh_quanLySanPhamControl.Enabled = enable;
-            bt_xoaSanPham_quanLySanPhamControl.Enabled = enable;
-            bt_capNhatSanPham_quanLySanPhamControl.Enabled = enable;
-            if (!enable)
-            {
-                dtv_sanPham_quanLySanPhamControl.ClearSelection();
-            }
-        }
-
-        /*
-         - Set trạng thái cho các button, dtv loại
-         */
-        private void setEditingModeCategory(bool enable)
-        {
-            bt_themLoaiSanPham_quanLySanPhamControl.Enabled = !enable;
-            bt_refreshLoai_quanLySanPhamControl.Enabled = enable;
-            bt_xoaLoaiSanPham_quanLySanPhamControl.Enabled = enable;
-            bt_capNhatLoai_quanLySanPhamControl.Enabled = enable;
-            if (!enable)
-            {
-                dtv_loaiSanPham_quanLySanPhamControl.ClearSelection();
-            }
+            commandButtonManagementCategory.notAdjustItem();
         }
 
         /*
@@ -178,9 +160,8 @@ namespace QuanLyCosmestic.ui
                         tb_giaSanPham_quanLySanPhamControl.Text = row.Cells[3].Value.ToString();
                         int index = int.Parse(row.Cells[5].Value.ToString()) - 1;
                         cb_loai_quanLySanPhamControl.SelectedIndex = index;
-                        
 
-                        setEditingModeProduct(true);
+                        commandButtonManagementProduct.adjustItem();
                         return;
                     }
                 }
@@ -225,8 +206,7 @@ namespace QuanLyCosmestic.ui
             tb_giaSanPham_quanLySanPhamControl.Text = row.Cells[4].Value.ToString();
             int index2 = int.Parse(row.Cells[5].Value.ToString()) - 1;
             cb_loai_quanLySanPhamControl.SelectedIndex = index2;
-
-            setEditingModeProduct(true);
+            commandButtonManagementProduct.adjustItem();
         }
 
         /*
@@ -246,8 +226,7 @@ namespace QuanLyCosmestic.ui
             id_category = int.Parse(row.Cells[0].Value.ToString());
 
             tb_tenLoai_quanLySanPhamControl.Text = row.Cells[1].Value.ToString();
-
-            setEditingModeCategory(true);
+            commandButtonManagementCategory.adjustItem();
         }
 
         /*
@@ -274,7 +253,7 @@ namespace QuanLyCosmestic.ui
                     loadData();
                     bt_refresh_quanLySanPhamControl_Click(null, null);
                     dtv_loaiSanPham_quanLySanPhamControl.ClearSelection();
-                    setEditingModeProduct(false);
+                    commandButtonManagementProduct.notAdjustItem();
 
                     return;
                 }
@@ -320,7 +299,7 @@ namespace QuanLyCosmestic.ui
                     loadData();
                     bt_refresh_quanLySanPhamControl_Click(null, null);
                     dtv_loaiSanPham_quanLySanPhamControl.ClearSelection();
-                    setEditingModeProduct(false);
+                    commandButtonManagementProduct.notAdjustItem();
 
                     return;
                 }
@@ -360,7 +339,7 @@ namespace QuanLyCosmestic.ui
                 loadData();
                 bt_refresh_quanLySanPhamControl_Click(null, null);
                 dtv_loaiSanPham_quanLySanPhamControl.ClearSelection();
-                setEditingModeProduct(false);
+                commandButtonManagementProduct.notAdjustItem();
 
                 MessageBox.Show("Xóa sản phẩm thành công");
 
@@ -391,7 +370,7 @@ namespace QuanLyCosmestic.ui
                     loadData();
                     bt_refreshLoai_quanLySanPhamControl_Click(null, null);
                     dtv_sanPham_quanLySanPhamControl.ClearSelection();
-                    setEditingModeCategory(false);
+                    commandButtonManagementCategory.notAdjustItem();
 
                     return;
                 }
@@ -433,7 +412,7 @@ namespace QuanLyCosmestic.ui
                     loadData();
                     bt_refreshLoai_quanLySanPhamControl_Click(null, null);
                     dtv_sanPham_quanLySanPhamControl.ClearSelection();
-                    setEditingModeCategory(false);
+                    commandButtonManagementCategory.notAdjustItem();
                     return;
                 }
                 else
@@ -472,7 +451,7 @@ namespace QuanLyCosmestic.ui
                 loadData();
                 bt_refreshLoai_quanLySanPhamControl_Click(null, null);
                 dtv_sanPham_quanLySanPhamControl.ClearSelection();
-                setEditingModeCategory(false);
+                commandButtonManagementCategory.notAdjustItem();
 
                 MessageBox.Show("Xóa loại sản phẩm thành công");
 
