@@ -429,8 +429,8 @@ namespace QuanLyCosmestic.ui
                 lb_tongTien_banHangControl.Text = "0 VND";
                 MessageBox.Show("Thanh toán thành công");
                 addDetailBill();
-                dataChange(TypeDataChange.BILL);
-                dataChange(TypeDataChange.PRODUCT);
+                notifyOtherControlDataChange(TypeDataChange.BILL);
+                notifyOtherControlDataChange(TypeDataChange.PRODUCT);
                 return;
             }
             else

@@ -375,7 +375,7 @@ namespace QuanLyCosmestic.ui
                     dgv_khachHang_quanLyKhachHangVaSuKien.ClearSelection();
                     bt_refreshSuKien_quanLyKhachHangVaSuKien_Click(null, null);
                     commandButtonManagementEvent.notAdjustItem();
-                    dataChange(TypeDataChange.EVENT);
+                    notifyOtherControlDataChange(TypeDataChange.EVENT);
                     return;
                 }
                 else
@@ -417,7 +417,7 @@ namespace QuanLyCosmestic.ui
                     dgv_khachHang_quanLyKhachHangVaSuKien.ClearSelection();
                     bt_refreshSuKien_quanLyKhachHangVaSuKien_Click(null, null);
                     commandButtonManagementEvent.notAdjustItem();
-                    dataChange(TypeDataChange.EVENT);
+                    notifyOtherControlDataChange(TypeDataChange.EVENT);
                     return;
                 }
                 else
@@ -459,7 +459,7 @@ namespace QuanLyCosmestic.ui
                 commandButtonManagementEvent.notAdjustItem();
 
                 MessageBox.Show("Xóa sự kiện thành công");
-                dataChange(TypeDataChange.EVENT);
+                notifyOtherControlDataChange(TypeDataChange.EVENT);
                 return;
             }
             else

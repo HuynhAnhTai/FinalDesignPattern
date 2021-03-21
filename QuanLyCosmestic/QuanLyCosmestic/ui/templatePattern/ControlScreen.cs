@@ -35,7 +35,7 @@ namespace QuanLyCosmestic.ui.templatePattern
             clear();
         }
 
-        public void dataChange(TypeDataChange typeDataChange)
+        public void notifyOtherControlDataChange(TypeDataChange typeDataChange)
         {
             centerMediator.notifyDataChange(typeDataChange, this);
         }

@@ -199,7 +199,7 @@ namespace QuanLyCosmestic.ui.control
                         loadData();
                         bt_refresh_quanLyNhapSanPham_Click(null, null);
                         commandButtonManagement.notAdjustItem();
-                        dataChange(TypeDataChange.PRODUCT);
+                        notifyOtherControlDataChange(TypeDataChange.PRODUCT);
                         return;
                     }
                     else
@@ -254,7 +254,7 @@ namespace QuanLyCosmestic.ui.control
                         loadData();
                         bt_refresh_quanLyNhapSanPham_Click(null, null);
                         commandButtonManagement.notAdjustItem();
-                        dataChange(TypeDataChange.PRODUCT);
+                        notifyOtherControlDataChange(TypeDataChange.PRODUCT);
                         return;
                     }
                     else
@@ -306,7 +306,7 @@ namespace QuanLyCosmestic.ui.control
                     loadData();
                     bt_refresh_quanLyNhapSanPham_Click(null, null);
                     commandButtonManagement.notAdjustItem();
-                    dataChange(TypeDataChange.PRODUCT);
+                    notifyOtherControlDataChange(TypeDataChange.PRODUCT);
                     return;
                 }
                 else

@@ -279,7 +279,7 @@ namespace QuanLyCosmestic.ui
                     bt_refresh_quanLySanPhamControl_Click(null, null);
                     dtv_loaiSanPham_quanLySanPhamControl.ClearSelection();
                     commandButtonManagementProduct.notAdjustItem();
-                    dataChange(TypeDataChange.PRODUCT);
+                    notifyOtherControlDataChange(TypeDataChange.PRODUCT);
                     return;
                 }
                 else
@@ -325,7 +325,7 @@ namespace QuanLyCosmestic.ui
                     bt_refresh_quanLySanPhamControl_Click(null, null);
                     dtv_loaiSanPham_quanLySanPhamControl.ClearSelection();
                     commandButtonManagementProduct.notAdjustItem();
-                    dataChange(TypeDataChange.PRODUCT);
+                    notifyOtherControlDataChange(TypeDataChange.PRODUCT);
                     return;
                 }
                 else
@@ -367,7 +367,7 @@ namespace QuanLyCosmestic.ui
                 commandButtonManagementProduct.notAdjustItem();
                 MessageBox.Show("Xóa sản phẩm thành công");
 
-                dataChange(TypeDataChange.PRODUCT);
+                notifyOtherControlDataChange(TypeDataChange.PRODUCT);
                 return;
             }
             else
