@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using QuanLyCosmestic.ui.templatePattern;
 using QuanLyCosmestic.ui.command;
+using QuanLyCosmestic.mediatorControlScreen;
 
 namespace QuanLyCosmestic.ui
 {
@@ -18,6 +19,9 @@ namespace QuanLyCosmestic.ui
         private dao.EventDao event_dao;
         private CommandButtonManagement commandButtonManagementKhachHang;
         private CommandButtonManagement commandButtonManagementEvent;
+
+        private bool dataCustomerChange = true;
+        private bool dataEventChange = true;
 
         private String phone_customer;
         private int id_event;
@@ -47,17 +51,39 @@ namespace QuanLyCosmestic.ui
             dgv_suKien_quanLyKhachHangVaSuKien.ClearSelection();
         }
 
+        public override void dataOfOtherControlChange(TypeDataChange typeUpdate)
+        {
+            if (typeUpdate == TypeDataChange.CUSTOMER)
+            {
+                dataCustomerChange = true;
+            }
+            else if (typeUpdate == TypeDataChange.EVENT)
+            {
+                dataEventChange = true;
+            }
+        }
+
         /*
          - Đổ dữ liệu khách hàng vào dgv_khachHang qua class CustomerDao và đổ dữ liệu vào dgv_suKien vào dgv_suKien qua class EventDao
          */
         public override void loadData()
         {
-            dgv_khachHang_quanLyKhachHangVaSuKien.DataSource = customer_dao.loadData();
+            if (dataCustomerChange)
+            {
+                dgv_khachHang_quanLyKhachHangVaSuKien.DataSource = customer_dao.loadData();
+                dataCustomerChange = false;
+            }
+            
             dgv_khachHang_quanLyKhachHangVaSuKien.Columns[0].HeaderText = "Số điện thoại khách hàng";
             dgv_khachHang_quanLyKhachHangVaSuKien.Columns[1].HeaderText = "Tên khách hàng";
             dgv_khachHang_quanLyKhachHangVaSuKien.Columns[2].HeaderText = "Địa chỉ";
 
-            dgv_suKien_quanLyKhachHangVaSuKien.DataSource = event_dao.loadData();
+            if (dataEventChange)
+            {
+                dgv_suKien_quanLyKhachHangVaSuKien.DataSource = event_dao.loadData();
+                dataEventChange = false;
+            }
+            
             dgv_suKien_quanLyKhachHangVaSuKien.Columns[0].HeaderText = "Mã sự kiện";
             dgv_suKien_quanLyKhachHangVaSuKien.Columns[1].HeaderText = "Tên sự kiện";
             dgv_suKien_quanLyKhachHangVaSuKien.Columns[2].HeaderText = "Giảm giá(%)";
@@ -349,7 +375,7 @@ namespace QuanLyCosmestic.ui
                     dgv_khachHang_quanLyKhachHangVaSuKien.ClearSelection();
                     bt_refreshSuKien_quanLyKhachHangVaSuKien_Click(null, null);
                     commandButtonManagementEvent.notAdjustItem();
-
+                    dataChange(TypeDataChange.EVENT);
                     return;
                 }
                 else
@@ -391,7 +417,7 @@ namespace QuanLyCosmestic.ui
                     dgv_khachHang_quanLyKhachHangVaSuKien.ClearSelection();
                     bt_refreshSuKien_quanLyKhachHangVaSuKien_Click(null, null);
                     commandButtonManagementEvent.notAdjustItem();
-
+                    dataChange(TypeDataChange.EVENT);
                     return;
                 }
                 else
@@ -433,6 +459,7 @@ namespace QuanLyCosmestic.ui
                 commandButtonManagementEvent.notAdjustItem();
 
                 MessageBox.Show("Xóa sự kiện thành công");
+                dataChange(TypeDataChange.EVENT);
                 return;
             }
             else

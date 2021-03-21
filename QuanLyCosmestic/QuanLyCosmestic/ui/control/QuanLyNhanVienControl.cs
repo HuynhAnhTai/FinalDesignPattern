@@ -1,4 +1,5 @@
-﻿using QuanLyCosmestic.ui.command;
+﻿using QuanLyCosmestic.mediatorControlScreen;
+using QuanLyCosmestic.ui.command;
 using QuanLyCosmestic.ui.templatePattern;
 using System;
 using System.Windows.Forms;
@@ -12,6 +13,8 @@ namespace QuanLyCosmestic.ui
         private CommandButtonManagement commandButtonManagement;
         private int id;
         private String user_name;
+
+        private bool dataEmployeeChange = true;
 
         public QuanLyNhanVien()
         {
@@ -44,12 +47,25 @@ namespace QuanLyCosmestic.ui
             commandButtonManagement.notAdjustItem();
         }
 
+        public override void dataOfOtherControlChange(TypeDataChange typeUpdate)
+        {
+            if (typeUpdate == TypeDataChange.EMPLOYEE)
+            {
+                dataEmployeeChange = true;
+            }
+        }
+
         /*
         - Đổ dữ liệu nhân viên vào dtg_khachHang qua class EmployeeDao
         */
         public override void loadData()
         {
-            dtg_nhanVien_quanLyNhanVienControl.DataSource = employee_dao.loadData();
+            if (dataEmployeeChange)
+            {
+                dtg_nhanVien_quanLyNhanVienControl.DataSource = employee_dao.loadData();
+                dataEmployeeChange = false;
+            }
+            
             dtg_nhanVien_quanLyNhanVienControl.Columns[0].HeaderText = "Mã nhân viên";
             dtg_nhanVien_quanLyNhanVienControl.Columns[1].HeaderText = "User Name";
             dtg_nhanVien_quanLyNhanVienControl.Columns[2].HeaderText = "Tên nhân viên";

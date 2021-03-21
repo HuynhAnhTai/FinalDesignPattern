@@ -1,4 +1,5 @@
-﻿using QuanLyCosmestic.ui.command;
+﻿using QuanLyCosmestic.mediatorControlScreen;
+using QuanLyCosmestic.ui.command;
 using QuanLyCosmestic.ui.templatePattern;
 using System;
 using System.Windows.Forms;
@@ -13,6 +14,9 @@ namespace QuanLyCosmestic.ui
         private CommandButtonManagement commandButtonManagementProduct;
         private string id_product;
         private int id_category;
+
+        private bool dataCategoryChange = true;
+        private bool dataProductChange = true;
 
         public QuanLySanPhamControl()
         {
@@ -41,17 +45,38 @@ namespace QuanLyCosmestic.ui
             dtv_sanPham_quanLySanPhamControl.ClearSelection();
         }
 
+        public override void dataOfOtherControlChange(TypeDataChange typeUpdate)
+        {
+            if (typeUpdate == TypeDataChange.CATEGORY)
+            {
+                dataCategoryChange = true;
+            }
+            else if (typeUpdate == TypeDataChange.PRODUCT)
+            {
+                dataProductChange = true;
+            }
+        }
         /*
          - Lấy dữ liệu ở CategoryDao và ProductDao đổ vào dtv_loaiSanPham, dtv_sanPham và cb_loai
          */
         public override void loadData()
         {
-            dtv_loaiSanPham_quanLySanPhamControl.DataSource = category_dao.loadData();
+            if (dataCategoryChange)
+            {
+                dtv_loaiSanPham_quanLySanPhamControl.DataSource = category_dao.loadData();
+                dataCategoryChange = false;
+            }
+            
             dtv_loaiSanPham_quanLySanPhamControl.Columns[0].HeaderText = "Mã loại sản phẩm";
             dtv_loaiSanPham_quanLySanPhamControl.Columns[1].HeaderText = "Tên loại sản phẩm";
             dtv_loaiSanPham_quanLySanPhamControl.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
-            dtv_sanPham_quanLySanPhamControl.DataSource = product_dao.loadData();
+            if (dataProductChange)
+            {
+                dtv_sanPham_quanLySanPhamControl.DataSource = product_dao.loadData();
+                dataProductChange = false;
+            }
+            
             dtv_sanPham_quanLySanPhamControl.Columns[0].HeaderText = "Mã sản phẩm";
             dtv_sanPham_quanLySanPhamControl.Columns[1].HeaderText = "Tên sản phẩm";
             dtv_sanPham_quanLySanPhamControl.Columns[2].HeaderText = "Đặc tính";
@@ -254,7 +279,7 @@ namespace QuanLyCosmestic.ui
                     bt_refresh_quanLySanPhamControl_Click(null, null);
                     dtv_loaiSanPham_quanLySanPhamControl.ClearSelection();
                     commandButtonManagementProduct.notAdjustItem();
-
+                    dataChange(TypeDataChange.PRODUCT);
                     return;
                 }
                 else
@@ -300,7 +325,7 @@ namespace QuanLyCosmestic.ui
                     bt_refresh_quanLySanPhamControl_Click(null, null);
                     dtv_loaiSanPham_quanLySanPhamControl.ClearSelection();
                     commandButtonManagementProduct.notAdjustItem();
-
+                    dataChange(TypeDataChange.PRODUCT);
                     return;
                 }
                 else
@@ -340,9 +365,9 @@ namespace QuanLyCosmestic.ui
                 bt_refresh_quanLySanPhamControl_Click(null, null);
                 dtv_loaiSanPham_quanLySanPhamControl.ClearSelection();
                 commandButtonManagementProduct.notAdjustItem();
-
                 MessageBox.Show("Xóa sản phẩm thành công");
 
+                dataChange(TypeDataChange.PRODUCT);
                 return;
             }
             else

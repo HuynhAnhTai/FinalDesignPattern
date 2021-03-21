@@ -1,4 +1,5 @@
-﻿using QuanLyCosmestic.ui.command;
+﻿using QuanLyCosmestic.mediatorControlScreen;
+using QuanLyCosmestic.ui.command;
 using QuanLyCosmestic.ui.templatePattern;
 using System;
 using System.Windows.Forms;
@@ -10,7 +11,7 @@ namespace QuanLyCosmestic.ui.control
         private dao.ReceiveNoteDao receive_note_dao;
         private dao.ProductDao product_dao;
         private CommandButtonManagement commandButtonManagement;
-
+        private bool dataReceiveNoteChange = true;
         private int id, amount;
 
         public QuanLyNhapSanPhamControl()
@@ -39,9 +40,20 @@ namespace QuanLyCosmestic.ui.control
         /*
          - Đổ dữ liệu sản phẩm nhập vào dgv_khachHang qua class ReceiveDao
          */
+        public override void dataOfOtherControlChange(TypeDataChange typeUpdate)
+        {
+            if (typeUpdate == TypeDataChange.RECEIVE_NOTE)
+            {
+                dataReceiveNoteChange = true;
+            }
+        }
         public override void loadData()
         {
-            dgv_sanPham_quanLyNhapSanPham.DataSource = receive_note_dao.loadData();
+            if (dataReceiveNoteChange)
+            {
+                dgv_sanPham_quanLyNhapSanPham.DataSource = receive_note_dao.loadData();
+                dataReceiveNoteChange = false;
+            }
             dgv_sanPham_quanLyNhapSanPham.Columns[0].HeaderText = "Mã phiếu nhập";
             dgv_sanPham_quanLyNhapSanPham.Columns[1].HeaderText = "Mã nhân viên";
             dgv_sanPham_quanLyNhapSanPham.Columns[2].HeaderText = "Mã sản phẩm";
@@ -51,6 +63,7 @@ namespace QuanLyCosmestic.ui.control
             dgv_sanPham_quanLyNhapSanPham.Columns[6].HeaderText = "Nhà cung cấp";
             dgv_sanPham_quanLyNhapSanPham.Columns[7].HeaderText = "Địa chỉ";
             dgv_sanPham_quanLyNhapSanPham.Columns[8].HeaderText = "Số điện thoại nhà cung cấp";
+
             commandButtonManagement.notAdjustItem();
         }
 
@@ -186,7 +199,7 @@ namespace QuanLyCosmestic.ui.control
                         loadData();
                         bt_refresh_quanLyNhapSanPham_Click(null, null);
                         commandButtonManagement.notAdjustItem();
-
+                        dataChange(TypeDataChange.PRODUCT);
                         return;
                     }
                     else
@@ -241,7 +254,7 @@ namespace QuanLyCosmestic.ui.control
                         loadData();
                         bt_refresh_quanLyNhapSanPham_Click(null, null);
                         commandButtonManagement.notAdjustItem();
-
+                        dataChange(TypeDataChange.PRODUCT);
                         return;
                     }
                     else
@@ -293,7 +306,7 @@ namespace QuanLyCosmestic.ui.control
                     loadData();
                     bt_refresh_quanLyNhapSanPham_Click(null, null);
                     commandButtonManagement.notAdjustItem();
-
+                    dataChange(TypeDataChange.PRODUCT);
                     return;
                 }
                 else

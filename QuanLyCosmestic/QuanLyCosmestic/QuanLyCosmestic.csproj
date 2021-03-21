@@ -84,6 +84,9 @@
     <Compile Include="helper\EventHelper.cs" />
     <Compile Include="helper\ProductHelper.cs" />
     <Compile Include="helper\ReceiveNoteHelper.cs" />
+    <Compile Include="mediatorControlScreen\CenterMediatorControlScreen.cs" />
+    <Compile Include="mediatorControlScreen\CenterMediatorImpl.cs" />
+    <Compile Include="mediatorControlScreen\EnumTypeDataChange.cs" />
     <Compile Include="model\Account.cs" />
     <Compile Include="model\Bill.cs" />
     <Compile Include="model\Category.cs" />
@@ -147,8 +150,8 @@
     <Compile Include="ui\control\QuanLyKhachHangVaSuKienControl.Designer.cs">
       <DependentUpon>QuanLyKhachHangVaSuKienControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="ui\strategyPatternMenu\MenuItemClick.cs" />
-    <Compile Include="ui\strategyPatternMenu\MenuItemClickImp.cs" />
+    <Compile Include="ui\menuItemClick\MenuItemClick.cs" />
+    <Compile Include="ui\menuItemClick\MenuItemClickImp.cs" />
     <Compile Include="ui\templatePattern\AbstractCommunicatorProvider .cs" />
     <Compile Include="ui\templatePattern\ControlScreen.cs">
       <SubType>UserControl</SubType>
@@ -220,9 +223,7 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="modeScreen\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.Drawing.Printing;
 using System.Collections;
 using QuanLyCosmestic.ui.templatePattern;
+using QuanLyCosmestic.mediatorControlScreen;
 
 namespace QuanLyCosmestic.ui
 {
@@ -22,6 +23,9 @@ namespace QuanLyCosmestic.ui
         private dao.DetailBillDao detail_bill;
 
         private DataTable dis_event_data;
+
+        private bool dataProductChange = true;
+        private bool dataEventChange = true;
 
         private int position;
         private int max = -1;
@@ -48,19 +52,40 @@ namespace QuanLyCosmestic.ui
             tb_sdtKhachHang_banHangControl.Focus(); 
         }
 
+        public override void dataOfOtherControlChange(TypeDataChange typeUpdate)
+        {
+            if (typeUpdate == TypeDataChange.PRODUCT)
+            {
+                dataProductChange = true;
+            }
+            else if (typeUpdate == TypeDataChange.EVENT)
+            {
+                dataEventChange = true;
+            }
+        }
+
         /*
          - Dữ liệu của dgv_sanPham sẽ được lấy qua câu lệnh truy vấn ở class ProductDao
          - dis_event sẽ có dữ liệu qua câu lệnh truy vấn ở class EventDao sau đó sẽ lấy tên dữ liệu của cột "NAM_EVENT" xuất hiện trên cb_suKien
         */
         public override void loadData()
         {
-            dgv_sanPham_banHangControl.DataSource = product_dao.loadDataSomething();
+            if (dataProductChange)
+            {
+                dgv_sanPham_banHangControl.DataSource = product_dao.loadDataSomething();
+                dataProductChange = false;
+            }
+            
             dgv_sanPham_banHangControl.Columns[0].HeaderText = "Mã sản phẩm";
             dgv_sanPham_banHangControl.Columns[1].HeaderText = "Tên sản phẩm";
             dgv_sanPham_banHangControl.Columns[2].HeaderText = "Đặc tính";
             dgv_sanPham_banHangControl.Columns[3].HeaderText = "Đơn giá";
 
-            dis_event_data = event_dao.loadData();
+            if (dataEventChange)
+            {
+                dis_event_data = event_dao.loadData();
+                dataEventChange = false;
+            }     
             cb_suKien_banHangControl.DataSource = dis_event_data;
             cb_suKien_banHangControl.DisplayMember = "NAME_EVENT";
             tb_sdtKhachHang_banHangControl.Focus();
@@ -404,6 +429,8 @@ namespace QuanLyCosmestic.ui
                 lb_tongTien_banHangControl.Text = "0 VND";
                 MessageBox.Show("Thanh toán thành công");
                 addDetailBill();
+                dataChange(TypeDataChange.BILL);
+                dataChange(TypeDataChange.PRODUCT);
                 return;
             }
             else

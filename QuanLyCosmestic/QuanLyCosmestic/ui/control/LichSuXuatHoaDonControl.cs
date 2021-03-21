@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using QuanLyCosmestic.ui.templatePattern;
+using QuanLyCosmestic.mediatorControlScreen;
 
 namespace QuanLyCosmestic.ui.control
 {
@@ -16,6 +17,7 @@ namespace QuanLyCosmestic.ui.control
         private dao.BillDao bill_dao;
         private dao.DetailBillDao detail_dao;
         private dao.EventDao event_dao;
+        private bool dataBillChange = true;
 
         int id_bill;
         int id_event;
@@ -37,12 +39,24 @@ namespace QuanLyCosmestic.ui.control
             dtv_hoaDon_lichSuXuatHoaDon.ClearSelection();
         }
 
+        public override void dataOfOtherControlChange(TypeDataChange typeUpdate)
+        {
+            if (typeUpdate == TypeDataChange.BILL)
+            {
+                dataBillChange = true;
+            }
+        }
+
         /*
          - Load dữ liệu đưa vào dtv_hoaDon
          */
         public override void loadData()
         {
-            dtv_hoaDon_lichSuXuatHoaDon.DataSource = bill_dao.loadData();
+            if (dataBillChange)
+            {
+                dtv_hoaDon_lichSuXuatHoaDon.DataSource = bill_dao.loadData();
+                dataBillChange = false;
+            }
             dtv_hoaDon_lichSuXuatHoaDon.Columns[0].HeaderText = "Mã hóa đơn";
             dtv_hoaDon_lichSuXuatHoaDon.Columns[1].HeaderText = "Tổng giá";
             dtv_hoaDon_lichSuXuatHoaDon.Columns[2].HeaderText = "Ngày xuất hóa đơn";
