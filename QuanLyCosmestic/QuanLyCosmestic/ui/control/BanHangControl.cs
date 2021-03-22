@@ -11,6 +11,7 @@ using System.Drawing.Printing;
 using System.Collections;
 using QuanLyCosmestic.ui.templatePattern;
 using QuanLyCosmestic.mediatorControlScreen;
+using QuanLyCosmestic.mementoBanHang;
 
 namespace QuanLyCosmestic.ui
 {
@@ -30,9 +31,16 @@ namespace QuanLyCosmestic.ui
         private int position;
         private int max = -1;
 
+        private CardCareTaker cardCareTaker;
+        private CardModel cardModel;
+
         public BanHangControl()
         {
             InitializeComponent();
+   
+            cardModel = new CardModel(new List<ListViewItem>());
+            cardCareTaker = new CardCareTaker();
+
             product_dao = dao.ProductDao.getInstance();
             event_dao = dao.EventDao.getInstance();
             customer_dao = dao.CustomerDao.getInstance();
@@ -41,6 +49,16 @@ namespace QuanLyCosmestic.ui
             lb_nhanVienBanHang_banHangControl.Text = Program.currentEmployee.name_employee;
             loadData();
             dgv_sanPham_banHangControl.ClearSelection();
+        }
+
+        private List<ListViewItem> getListItemInCard()
+        {
+            List<ListViewItem> items = new List<ListViewItem>();
+            foreach (ListViewItem item in lv_hoaDon_banHangControl.Items)
+            {
+                items.Add(item);
+            }
+            return items;
         }
 
         /*
@@ -109,6 +127,8 @@ namespace QuanLyCosmestic.ui
             {
                 lv_hoaDon_banHangControl.Items.Remove(items);
             }
+            //memento
+            cardCareTaker.clearAllMementoCard();
             dgv_sanPham_banHangControl.ClearSelection();
 
         }
@@ -252,6 +272,10 @@ namespace QuanLyCosmestic.ui
                 position = lv_hoaDon_banHangControl.Items.IndexOfKey(row.Cells["ID_PRODUCT"].Value.ToString());
                 lv_hoaDon_banHangControl.Items[position].Selected = true;
             }
+            //memento
+            cardCareTaker.saveMememtoCard(cardModel.save());
+            cardModel.items = getListItemInCard();
+
 
             tb_nhapSoLuongSanPham_banHang.Focus();
         }
@@ -286,7 +310,9 @@ namespace QuanLyCosmestic.ui
                 }
                 foreach (ListViewItem items in lv_hoaDon_banHangControl.SelectedItems)
                 {
-                    
+                    //memento
+                    cardCareTaker.saveMememtoCard(cardModel.save());
+
                     ListViewItem lvItem2 = new ListViewItem();
                     lvItem2.Name = items.Name;
                     lvItem2.SubItems.Add(items.SubItems[1].Text);
@@ -308,6 +334,9 @@ namespace QuanLyCosmestic.ui
                     lv_hoaDon_banHangControl.Items.Insert(position, lvItem2);
                     position = lv_hoaDon_banHangControl.Items.IndexOfKey(items.Name);
                     lv_hoaDon_banHangControl.Items[position].Selected = true;
+
+                    //memento
+                    cardModel.items = getListItemInCard();
                 }
             }
         }
@@ -356,12 +385,18 @@ namespace QuanLyCosmestic.ui
         {
             foreach (ListViewItem items in lv_hoaDon_banHangControl.SelectedItems)
             {
+                //memento
+                cardCareTaker.saveMememtoCard(cardModel.save());
+
                 String temp = lb_thanhTien_banHangControl.Text.Replace(" VND", "");
                 float price_label = float.Parse(temp)  - float.Parse(items.SubItems[5].Text);
                 lb_thanhTien_banHangControl.Text = price_label.ToString() + " VND";
 
                 lv_hoaDon_banHangControl.Items.RemoveAt(position);
                 position = lv_hoaDon_banHangControl.Items.IndexOfKey(items.Name);
+
+                //memento
+                cardModel.items = getListItemInCard();
                 if (position - 1 < 0)
                 {
                     return;
@@ -370,7 +405,6 @@ namespace QuanLyCosmestic.ui
                 {
                     lv_hoaDon_banHangControl.Items[position - 1].Selected = true;
                 }
-               
             }
         }
 
@@ -474,6 +508,21 @@ namespace QuanLyCosmestic.ui
         private void updateAmountProduct(String id, int amount)
         {
             product_dao.updateAmountProduct(id, amount, 0);
+        }
+
+        private void btnHoanTac_Click(object sender, EventArgs e)
+        {
+            //memento
+            cardModel.undo(cardCareTaker.popOutMememtoCard());
+            lv_hoaDon_banHangControl.Items.Clear();
+            float totalPrice = 0f;
+            foreach (ListViewItem listViewItem in cardModel.items)
+            {
+                lv_hoaDon_banHangControl.Items.Add(listViewItem);
+                totalPrice += float.Parse(listViewItem.SubItems[5].Text);
+            }
+            lb_thanhTien_banHangControl.Text = totalPrice.ToString() + " VND";
+
         }
     }
 }

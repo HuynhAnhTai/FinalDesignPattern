@@ -48,6 +48,7 @@
             this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader12 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label12 = new System.Windows.Forms.Label();
             this.dtp_ngayNhap_banHangControl = new System.Windows.Forms.DateTimePicker();
@@ -63,7 +64,7 @@
             this.bt_refresh_banHangControl = new System.Windows.Forms.Button();
             this.bt_xoa_banHangControl = new System.Windows.Forms.Button();
             this.bt_thanhToan_banHangControl = new System.Windows.Forms.Button();
-            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.btnHoanTac = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_sanPham_banHangControl)).BeginInit();
             this.panel2.SuspendLayout();
@@ -242,38 +243,37 @@
             // 
             // columnHeader7
             // 
-            this.columnHeader7.DisplayIndex = 1;
             this.columnHeader7.Text = "";
             this.columnHeader7.Width = 0;
             // 
             // columnHeader8
             // 
-            this.columnHeader8.DisplayIndex = 1;
             this.columnHeader8.Text = "Tên SP";
             this.columnHeader8.Width = 120;
             // 
             // columnHeader9
             // 
-            this.columnHeader9.DisplayIndex = 2;
             this.columnHeader9.Text = "Đặc tính";
             this.columnHeader9.Width = 83;
             // 
             // columnHeader10
             // 
-            this.columnHeader10.DisplayIndex = 3;
             this.columnHeader10.Text = "Đơn giá";
             this.columnHeader10.Width = 77;
             // 
             // columnHeader11
             // 
-            this.columnHeader11.DisplayIndex = 4;
             this.columnHeader11.Text = "Số lượng";
             // 
             // columnHeader12
             // 
-            this.columnHeader12.DisplayIndex = 5;
             this.columnHeader12.Text = "Thành tiền";
             this.columnHeader12.Width = 150;
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "Mã SP";
+            this.columnHeader1.Width = 0;
             // 
             // groupBox1
             // 
@@ -395,7 +395,7 @@
             // 
             this.bt_refresh_banHangControl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.bt_refresh_banHangControl.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bt_refresh_banHangControl.Location = new System.Drawing.Point(451, 391);
+            this.bt_refresh_banHangControl.Location = new System.Drawing.Point(451, 316);
             this.bt_refresh_banHangControl.Name = "bt_refresh_banHangControl";
             this.bt_refresh_banHangControl.Size = new System.Drawing.Size(87, 65);
             this.bt_refresh_banHangControl.TabIndex = 3;
@@ -427,17 +427,24 @@
             this.bt_thanhToan_banHangControl.UseVisualStyleBackColor = false;
             this.bt_thanhToan_banHangControl.Click += new System.EventHandler(this.bt_thanhToan_banHangControl_Click);
             // 
-            // columnHeader1
+            // btnHoanTac
             // 
-            this.columnHeader1.DisplayIndex = 0;
-            this.columnHeader1.Text = "Mã SP";
-            this.columnHeader1.Width = 0;
+            this.btnHoanTac.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.btnHoanTac.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnHoanTac.Location = new System.Drawing.Point(451, 405);
+            this.btnHoanTac.Name = "btnHoanTac";
+            this.btnHoanTac.Size = new System.Drawing.Size(87, 52);
+            this.btnHoanTac.TabIndex = 7;
+            this.btnHoanTac.Text = "Hoàn tác";
+            this.btnHoanTac.UseVisualStyleBackColor = false;
+            this.btnHoanTac.Click += new System.EventHandler(this.btnHoanTac_Click);
             // 
             // BanHangControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.BlanchedAlmond;
+            this.Controls.Add(this.btnHoanTac);
             this.Controls.Add(this.bt_thanhToan_banHangControl);
             this.Controls.Add(this.bt_xoa_banHangControl);
             this.Controls.Add(this.bt_refresh_banHangControl);
@@ -494,5 +501,6 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox tb_nhapSoLuongSanPham_banHang;
         private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.Button btnHoanTac;
     }
 }

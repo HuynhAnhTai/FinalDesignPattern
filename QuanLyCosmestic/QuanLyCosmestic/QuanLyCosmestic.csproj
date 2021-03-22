@@ -87,6 +87,9 @@
     <Compile Include="mediatorControlScreen\CenterMediatorControlScreen.cs" />
     <Compile Include="mediatorControlScreen\CenterMediatorImpl.cs" />
     <Compile Include="mediatorControlScreen\EnumTypeDataChange.cs" />
+    <Compile Include="mementoBanHang\CardCareTaker.cs" />
+    <Compile Include="mementoBanHang\CardModel.cs" />
+    <Compile Include="mementoBanHang\MementoCard.cs" />
     <Compile Include="model\Account.cs" />
     <Compile Include="model\Bill.cs" />
     <Compile Include="model\Category.cs" />
