@@ -419,6 +419,8 @@ namespace QuanLyCosmestic.ui
                 if (checkInfo())
                 {
                     addBill();
+                    //memento
+                    cardCareTaker.clearAllMementoCard();
                 }
                 else
                 {
