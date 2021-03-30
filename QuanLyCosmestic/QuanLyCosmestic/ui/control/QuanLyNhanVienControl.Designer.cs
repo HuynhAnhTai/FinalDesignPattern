@@ -1,6 +1,6 @@
 ﻿namespace QuanLyCosmestic.ui
 {
-    partial class QuanLyNhanVien
+    partial class QuanLyNhanVienControl
     {
         /// <summary> 
         /// Required designer variable.

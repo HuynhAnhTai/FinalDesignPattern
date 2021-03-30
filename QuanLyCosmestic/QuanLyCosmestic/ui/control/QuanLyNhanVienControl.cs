@@ -6,7 +6,7 @@ using System.Windows.Forms;
 
 namespace QuanLyCosmestic.ui
 {
-    public partial class QuanLyNhanVien : ControlScreen
+    public partial class QuanLyNhanVienControl : ControlScreen
     {
         private dao.AccountDAO account_dao;
         private dao.EmployeeDAO employee_dao;
@@ -16,7 +16,7 @@ namespace QuanLyCosmestic.ui
 
         private bool dataEmployeeChange = true;
 
-        public QuanLyNhanVien()
+        public QuanLyNhanVienControl()
         {
             account_dao = dao.AccountDAO.getInstance();
             employee_dao = dao.EmployeeDAO.getInstance();

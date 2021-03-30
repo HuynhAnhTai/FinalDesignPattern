@@ -31,7 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormHome));
             this.panel2 = new System.Windows.Forms.Panel();
             this.quanLySanPhamControl1 = new QuanLyCosmestic.ui.QuanLySanPhamControl();
-            this.quanLyNhanVien1 = new QuanLyCosmestic.ui.QuanLyNhanVien();
+            this.quanLyNhanVien1 = new QuanLyCosmestic.ui.QuanLyNhanVienControl();
             this.quanLyKhachHangVaSuKienControl1 = new QuanLyCosmestic.ui.QuanLyKhachHangVaSuKienControl();
             this.quanLyNhapSanPhamControl1 = new QuanLyCosmestic.ui.control.QuanLyNhapSanPhamControl();
             this.lichSuXuatHoaDonControl1 = new QuanLyCosmestic.ui.control.LichSuXuatHoaDonControl();
@@ -285,7 +285,7 @@
         private System.Windows.Forms.Button bt_quanLyNhapSanPham_home;
         private System.Windows.Forms.Panel panel_switch_home;
         private QuanLySanPhamControl quanLySanPhamControl1;
-        private QuanLyNhanVien quanLyNhanVien1;
+        private QuanLyNhanVienControl quanLyNhanVien1;
         private QuanLyKhachHangVaSuKienControl quanLyKhachHangVaSuKienControl1;
         private control.QuanLyNhapSanPhamControl quanLyNhapSanPhamControl1;
         private control.LichSuXuatHoaDonControl lichSuXuatHoaDonControl1;
