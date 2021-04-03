@@ -25,7 +25,7 @@ namespace QuanLyCosmestic.ui
             {
                 panel_switch_home.Height = bt_banHang_home.Height;
                 panel_switch_home.Top = bt_banHang_home.Top;
-                //template method, strategy pattern 
+                //template method
                 menuItemClick.clickScreen(banHangControl1);
             }
             else
