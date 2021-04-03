@@ -166,7 +166,7 @@
 											"top": 295,
 											"width": 114.50537109375,
 											"height": 13,
-											"text": "+fristActive(): void",
+											"text": "+firstActive(): void",
 											"horizontalAlignment": 0
 										},
 										{
@@ -2421,7 +2421,7 @@
 							"_parent": {
 								"$ref": "AAAAAAF4g0T2XeEJH3Q="
 							},
-							"name": "fristActive",
+							"name": "firstActive",
 							"parameters": [
 								{
 									"_type": "UMLParameter",
@@ -4598,7 +4598,8 @@
 									"_parent": {
 										"$ref": "AAAAAAF4g18SUOOai7Q="
 									},
-									"name": "String request"
+									"name": "String request",
+									"type": ""
 								},
 								{
 									"_type": "UMLParameter",
@@ -4606,7 +4607,8 @@
 									"_parent": {
 										"$ref": "AAAAAAF4g18SUOOai7Q="
 									},
-									"name": "Form formFrom"
+									"name": "Form formFrom",
+									"type": ""
 								},
 								{
 									"_type": "UMLParameter",
@@ -6578,7 +6580,8 @@
 									"_parent": {
 										"$ref": "AAAAAAF4g3Viiuh3+eE="
 									},
-									"name": "String sql"
+									"name": "String sql",
+									"type": ""
 								},
 								{
 									"_type": "UMLParameter",
@@ -6995,7 +6998,8 @@
 									"_parent": {
 										"$ref": "AAAAAAF4g31pW+umEdY="
 									},
-									"name": "String sql"
+									"name": "String sql",
+									"type": ""
 								},
 								{
 									"_type": "UMLParameter",
@@ -7003,7 +7007,8 @@
 									"_parent": {
 										"$ref": "AAAAAAF4g31pW+umEdY="
 									},
-									"name": "DbParameter[] parameters"
+									"name": "DbParameter[] parameters",
+									"type": ""
 								},
 								{
 									"_type": "UMLParameter",
@@ -7104,7 +7109,8 @@
 									"_parent": {
 										"$ref": "AAAAAAF4g3+pkuzC+aU="
 									},
-									"name": "String sql"
+									"name": "String sql",
+									"type": ""
 								},
 								{
 									"_type": "UMLParameter",
@@ -7112,7 +7118,8 @@
 									"_parent": {
 										"$ref": "AAAAAAF4g3+pkuzC+aU="
 									},
-									"name": "DbParameter[] parameters"
+									"name": "DbParameter[] parameters",
+									"type": ""
 								},
 								{
 									"_type": "UMLParameter",
@@ -9546,7 +9553,8 @@
 									"_parent": {
 										"$ref": "AAAAAAF4g5CNf/QkOco="
 									},
-									"name": "object sender"
+									"name": "object sender",
+									"type": ""
 								},
 								{
 									"_type": "UMLParameter",
@@ -9554,7 +9562,8 @@
 									"_parent": {
 										"$ref": "AAAAAAF4g5CNf/QkOco="
 									},
-									"name": "EventArgs e"
+									"name": "EventArgs e",
+									"type": ""
 								},
 								{
 									"_type": "UMLParameter",
@@ -9581,7 +9590,8 @@
 									"_parent": {
 										"$ref": "AAAAAAF4g5EobPTI6Js="
 									},
-									"name": "object sender"
+									"name": "object sender",
+									"type": ""
 								},
 								{
 									"_type": "UMLParameter",
@@ -9589,7 +9599,8 @@
 									"_parent": {
 										"$ref": "AAAAAAF4g5EobPTI6Js="
 									},
-									"name": "DataGridViewCellEventArgs e"
+									"name": "DataGridViewCellEventArgs e",
+									"type": ""
 								},
 								{
 									"_type": "UMLParameter",
@@ -12070,7 +12081,8 @@
 									"_parent": {
 										"$ref": "AAAAAAF4g5u73PvwBeA="
 									},
-									"name": "TypeDataChange typeUpdate"
+									"name": "TypeDataChange typeUpdate",
+									"type": ""
 								},
 								{
 									"_type": "UMLParameter",
@@ -12078,7 +12090,8 @@
 									"_parent": {
 										"$ref": "AAAAAAF4g5u73PvwBeA="
 									},
-									"name": "ControlScreen controlNotify"
+									"name": "ControlScreen controlNotify",
+									"type": ""
 								},
 								{
 									"_type": "UMLParameter",
@@ -12370,7 +12383,8 @@
 									"_parent": {
 										"$ref": "AAAAAAF4g6zPEv42JGA="
 									},
-									"name": "TypeDataChange typeDataChange"
+									"name": "TypeDataChange typeDataChange",
+									"type": ""
 								},
 								{
 									"_type": "UMLParameter",
@@ -12575,7 +12589,8 @@
 									"_parent": {
 										"$ref": "AAAAAAF4g7Kemf9dFvQ="
 									},
-									"name": "object sender"
+									"name": "object sender",
+									"type": ""
 								},
 								{
 									"_type": "UMLParameter",
@@ -12583,7 +12598,8 @@
 									"_parent": {
 										"$ref": "AAAAAAF4g7Kemf9dFvQ="
 									},
-									"name": "EventArgs e"
+									"name": "EventArgs e",
+									"type": ""
 								},
 								{
 									"_type": "UMLParameter",
@@ -15042,7 +15058,8 @@
 									"_parent": {
 										"$ref": "AAAAAAF4g8NybgR19r0="
 									},
-									"name": "object sender"
+									"name": "object sender",
+									"type": ""
 								},
 								{
 									"_type": "UMLParameter",
@@ -15050,7 +15067,8 @@
 									"_parent": {
 										"$ref": "AAAAAAF4g8NybgR19r0="
 									},
-									"name": "EventArgs e"
+									"name": "EventArgs e",
+									"type": ""
 								},
 								{
 									"_type": "UMLParameter",

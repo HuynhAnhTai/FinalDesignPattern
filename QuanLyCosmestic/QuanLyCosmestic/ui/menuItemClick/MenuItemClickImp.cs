@@ -16,10 +16,10 @@ namespace QuanLyCosmestic.ui.strategyPatternMenu
             controlStreen.screenClick();
         }
 
-        public void fristActive(ControlScreen control)
+        public void firstActive(ControlScreen control)
         {
             controlStreen = control;
-            controlStreen.fristActive();
+            controlStreen.firstActive();
         }
 
     }

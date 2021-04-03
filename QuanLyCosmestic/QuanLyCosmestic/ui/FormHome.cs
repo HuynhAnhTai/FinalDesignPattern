@@ -139,7 +139,7 @@ namespace QuanLyCosmestic.ui
                     panel_switch_home.Height = bt_quanLySanPham_home.Height;
                     panel_switch_home.Top = bt_quanLySanPham_home.Top;
 
-                    menuItemClick.fristActive(quanLySanPhamControl1);
+                    menuItemClick.firstActive(quanLySanPhamControl1);
                     Program.newForm = 1;
                 }
                 else
@@ -147,7 +147,7 @@ namespace QuanLyCosmestic.ui
                     panel_switch_home.Height = bt_banHang_home.Height;
                     panel_switch_home.Top = bt_banHang_home.Top;
 
-                    menuItemClick.fristActive(banHangControl1);
+                    menuItemClick.firstActive(banHangControl1);
                     Program.newForm = 1;
                 }
             }

@@ -5,6 +5,6 @@ namespace QuanLyCosmestic.ui.strategyPatternMenu
     interface MenuItemClick
     {
         void clickScreen(ControlScreen control);
-        void fristActive(ControlScreen control);
+        void firstActive(ControlScreen control);
     }
 }

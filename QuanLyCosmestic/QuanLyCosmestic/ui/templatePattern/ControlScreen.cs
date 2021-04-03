@@ -27,7 +27,7 @@ namespace QuanLyCosmestic.ui.templatePattern
             clear();
         }
 
-        public void fristActive()
+        public void firstActive()
         {
             this.BringToFront();
             this.Select();
